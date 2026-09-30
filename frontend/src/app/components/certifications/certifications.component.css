@@ -1,0 +1,81 @@
+:host {
+  display: block;
+  --accent: #ff6a00;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.certifications {
+  background: #0d1117;
+  padding: 70px 20px;
+  border-top: 1px solid #30363d;
+}
+
+.certifications-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.cert-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.cert-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 16px 18px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.cert-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.cert-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.cert-name {
+  font-size: 0.98rem;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.cert-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #8b949e;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cert-issuer {
+  color: var(--accent);
+  font-weight: 600;
+}

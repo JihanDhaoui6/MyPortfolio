@@ -1,0 +1,103 @@
+:host {
+  display: block;
+  --accent: #ff6a00;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.projects {
+  background: #0a0e14;
+  padding: 70px 20px;
+  border-top: 1px solid #30363d;
+}
+
+.projects-container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.project-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 24px 26px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.project-title {
+  font-size: 1.15rem;
+  color: #fff;
+  margin: 0;
+}
+
+.project-date {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.project-points {
+  margin: 0 0 16px;
+  padding-left: 20px;
+  color: #c9d1d9;
+  line-height: 1.6;
+}
+
+.project-points li {
+  margin-bottom: 6px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: rgba(255, 106, 0, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(255, 106, 0, 0.35);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}

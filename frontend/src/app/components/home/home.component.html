@@ -1,0 +1,79 @@
+<section class="hero">
+  <div class="avatar-wrapper">
+    <img class="avatar" src="assets/images/avatar.png" alt="Jihan Dhaoui" />
+  </div>
+
+  <p class="greeting">Hi! I'm Jihan Dhaoui</p>
+  <h1 class="title">Cloud &amp; DevOps Engineer</h1>
+
+  <div class="badges">
+    <span class="badge">📍 Tunisia</span>
+    <span class="badge">⚙️ AWS, Azure, Kubernetes, Terraform &amp; Docker</span>
+    <span class="badge">❯_ Loves Infrastructure as Code</span>
+  </div>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="#contact">
+      Hire Me! <span class="icon">➤</span>
+    </a>
+    <a class="btn btn-secondary" href="assets/cv/Jihan-Dhaoui-CV.pdf" download>
+      Download CV <span class="icon">⭳</span>
+    </a>
+  </div>
+
+  <!-- Terminal interactif -->
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <span class="terminal-title">jihan&#64;cloud-resume - zsh</span>
+    </div>
+
+    <div class="terminal-body" #terminalBody>
+      <pre class="ascii-title">
+    _ ___ _  _   _   _  _ 
+ _ | |_ _| || | /_\ | \| |
+| || || || __ |/ _ \| .` |
+ \__/|___|_||_/_/ \_\_|\_|
+      </pre>
+
+      <p class="line success">Welcome to my interactive portfolio!</p>
+      <p class="line hint">Type <span class="cmd">'help'</span> to list available commands.</p>
+
+      <div class="history">
+        <div class="entry" *ngFor="let entry of history">
+          <div class="prompt-line">
+            <span class="prompt">jihan&#64;cloud-resume:~$</span>
+            <span class="typed">{{ entry.command }}</span>
+          </div>
+          <pre class="output" *ngIf="entry.output">{{ entry.output }}</pre>
+        </div>
+      </div>
+
+      <div class="prompt-line current">
+        <span class="prompt">jihan&#64;cloud-resume:~$</span>
+        <input
+          #cmdInput
+          class="cmd-input"
+          type="text"
+          autofocus
+          [(ngModel)]="currentCommand"
+          (keydown.enter)="runCommand()"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-about></app-about>
+<app-experience></app-experience>
+<app-skills></app-skills>
+<app-projects></app-projects>
+ 
+<app-certifications></app-certifications>
+
+<app-contact></app-contact>
+
