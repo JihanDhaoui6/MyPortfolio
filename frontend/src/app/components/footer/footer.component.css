@@ -1,79 +1,29 @@
 .footer {
-  min-height: 100px;
+  border-top: 1px solid #e5e7eb;
+  padding: 30px 0;
+  margin-top: 60px;
+}
 
-  padding: 30px 8%;
-
-  border-top: 1px solid var(--border);
-
-  background: var(--bg);
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 
   display: flex;
-
-  align-items: center;
-
   justify-content: space-between;
-
-  color: var(--text-muted);
-
-  font-family: 'Space Mono', monospace;
-
-  font-size: 8px;
-}
-
-.footer-left strong {
-  color: var(--text);
-
-  font-size: 16px;
-
-  letter-spacing: -1px;
-}
-
-.footer-left strong span {
-  color: var(--orange);
-}
-
-.footer-left p {
-  margin: 7px 0 0;
-}
-
-.footer-center {
-  display: flex;
-
   align-items: center;
-
-  gap: 8px;
-
-  color: var(--orange);
 }
 
-.footer-right {
-  text-align: right;
+.footer-links {
+  display: flex;
+  gap: 20px;
 }
 
-.status-dot {
-  width: 6px;
-  height: 6px;
-
-  display: inline-block;
-
-  border-radius: 50%;
-
-  background: var(--orange);
-
-  box-shadow: 0 0 10px var(--orange);
+.footer-links a {
+  color: #4b5563;
+  text-decoration: none;
 }
 
-@media (max-width: 700px) {
-
-  .footer {
-    flex-direction: column;
-
-    gap: 20px;
-
-    text-align: center;
-  }
-
-  .footer-right {
-    text-align: center;
-  }
+.footer-links a:hover {
+  color: #111827;
 }

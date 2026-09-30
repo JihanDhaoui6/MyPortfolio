@@ -1,30 +1,51 @@
 import { Component } from '@angular/core';
-import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
 
   menuOpen = false;
 
-  visitors = 1284;
+  darkMode = false;
 
-  constructor(
-    public themeService: ThemeService
-  ) {}
+  language = 'EN';
+
+  // Temporary value.
+  // Later this will come from the backend.
+  visitorCount = Math.floor(Math.random() * 500) + 1000;
+
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
   }
 
+
   closeMenu(): void {
     this.menuOpen = false;
   }
 
-  toggleTheme(): void {
-    this.themeService.toggleTheme();
+
+  toggleLanguage(): void {
+
+    this.language = this.language === 'EN'
+      ? 'FR'
+      : 'EN';
+
   }
+
+
+  toggleTheme(): void {
+
+    this.darkMode = !this.darkMode;
+
+    document.body.classList.toggle(
+      'dark-mode',
+      this.darkMode
+    );
+
+  }
+
 }

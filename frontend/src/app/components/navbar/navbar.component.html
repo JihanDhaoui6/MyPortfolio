@@ -1,165 +1,132 @@
-<header class="navbar">
+<nav class="navbar">
 
+  <!-- LEFT : MENU -->
   <div class="navbar-left">
 
     <button
       class="menu-button"
+      type="button"
       (click)="toggleMenu()"
       aria-label="Open menu">
 
-      <span class="menu-lines">
-        <span></span>
-        <span></span>
+      <span class="menu-icon">
+        ☰
       </span>
 
-      <span class="menu-label">MENU</span>
+      <span>Menu</span>
 
     </button>
 
   </div>
 
 
-  <div class="navbar-center">
+  <!-- CENTER : VISITOR COUNTER -->
+  <div class="visitor-counter">
 
-    <span class="status-dot"></span>
+    <span class="eye">
+      👁
+    </span>
 
-    <span class="status-text">
-      ENGINEERING PORTFOLIO
+    <span class="visitor-number">
+      {{ visitorCount }}
     </span>
 
   </div>
 
 
+  <!-- RIGHT : LANGUAGE + THEME -->
   <div class="navbar-right">
 
-    <div class="visitor-counter">
+    <button
+      class="language-button"
+      type="button"
+      (click)="toggleLanguage()">
 
-      <span class="eye">◉</span>
+      <span class="globe">🌐</span>
 
-      <span>
-        {{ visitors | number }}
-      </span>
+      <span>{{ language }}</span>
 
-    </div>
-
-
-    <button class="language-button">
-      <span>FR</span>
     </button>
 
 
     <button
       class="theme-button"
-      (click)="toggleTheme()">
+      type="button"
+      (click)="toggleTheme()"
+      aria-label="Toggle dark mode">
 
-      <span *ngIf="!themeService.isLightTheme()">☾</span>
-
-      <span *ngIf="themeService.isLightTheme()">☀</span>
+      <span *ngIf="!darkMode">☾</span>
+      <span *ngIf="darkMode">☀</span>
 
     </button>
 
   </div>
 
-</header>
+</nav>
 
+
+<!-- MENU OVERLAY -->
 
 <div
-  class="menu-backdrop"
+  class="menu-overlay"
   *ngIf="menuOpen"
   (click)="closeMenu()">
-</div>
 
-
-<aside
-  class="side-menu"
-  [class.open]="menuOpen">
-
-  <div class="side-menu-header">
-
-    <div>
-      <span class="mini-label">NAVIGATION</span>
-
-      <h2>JIHAN<span>.</span></h2>
-    </div>
+  <div
+    class="menu-panel"
+    (click)="$event.stopPropagation()">
 
     <button
       class="close-button"
+      type="button"
       (click)="closeMenu()">
 
       ×
 
     </button>
 
-  </div>
 
-
-  <nav class="navigation">
-
-    <a routerLink="/" (click)="closeMenu()">
-      <span>01</span>
-      HOME
-    </a>
-
-    <a routerLink="/about" (click)="closeMenu()">
-      <span>02</span>
-      ABOUT
-    </a>
-
-    <a routerLink="/skills" (click)="closeMenu()">
-      <span>03</span>
-      SKILLS
-    </a>
-
-    <a routerLink="/experience" (click)="closeMenu()">
-      <span>04</span>
-      EXPERIENCE
-    </a>
-
-    <a routerLink="/projects" (click)="closeMenu()">
-      <span>05</span>
-      PROJECTS
-    </a>
-
-    <a routerLink="/activity" (click)="closeMenu()">
-      <span>06</span>
-      ACTIVITY
-    </a>
-
-    <a routerLink="/certifications" (click)="closeMenu()">
-      <span>07</span>
-      CERTIFICATIONS
-    </a>
-
-    <a routerLink="/infrastructure" (click)="closeMenu()">
-      <span>08</span>
-      INFRASTRUCTURE
-    </a>
-
-    <a routerLink="/contact" (click)="closeMenu()">
-      <span>09</span>
-      CONTACT
-    </a>
-
-  </nav>
-
-
-  <div class="side-menu-footer">
-
-    <div class="system-status">
-
-      <span class="status-dot"></span>
-
-      <div>
-        <small>SYSTEM</small>
-        <strong>ONLINE</strong>
-      </div>
-
+    <div class="menu-title">
+      <span>Navigation</span>
     </div>
 
-    <p>
-      CLOUD · DEVOPS · DEVSECOPS
-    </p>
+
+    <ul>
+
+      <li>
+        <a routerLink="/" (click)="closeMenu()">Home</a>
+      </li>
+
+      <li>
+        <a routerLink="/about" (click)="closeMenu()">About</a>
+      </li>
+
+      <li>
+        <a routerLink="/skills" (click)="closeMenu()">Skills</a>
+      </li>
+
+      <li>
+        <a routerLink="/projects" (click)="closeMenu()">Projects</a>
+      </li>
+
+      <li>
+        <a routerLink="/certifications" (click)="closeMenu()">
+          Certifications
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/experience" (click)="closeMenu()">
+          Experience
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/contact" (click)="closeMenu()">Contact</a>
+      </li>
+
+    </ul>
 
   </div>
 
-</aside>
+</div>

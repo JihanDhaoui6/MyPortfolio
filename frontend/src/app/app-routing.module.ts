@@ -4,11 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { SkillsComponent } from './components/skills/skills.component';
-import { ExperienceComponent } from './components/experience/experience.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { ActivityComponent } from './components/activity/activity.component';
 import { CertificationsComponent } from './components/certifications/certifications.component';
-import { InfrastructureLabComponent } from './components/infrastructure-lab/infrastructure-lab.component';
+import { ExperienceComponent } from './components/experience/experience.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
@@ -25,24 +23,16 @@ const routes: Routes = [
     component: SkillsComponent
   },
   {
-    path: 'experience',
-    component: ExperienceComponent
-  },
-  {
     path: 'projects',
     component: ProjectsComponent
-  },
-  {
-    path: 'activity',
-    component: ActivityComponent
   },
   {
     path: 'certifications',
     component: CertificationsComponent
   },
   {
-    path: 'infrastructure',
-    component: InfrastructureLabComponent
+    path: 'experience',
+    component: ExperienceComponent
   },
   {
     path: 'contact',
@@ -56,10 +46,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'enabled'
-    })
+    RouterModule.forRoot(routes)
   ],
-  exports: [RouterModule]
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule {}

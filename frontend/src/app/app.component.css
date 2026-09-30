@@ -1,4 +1,7 @@
-.main-content {
-  min-height: 100vh;
-  overflow: hidden;
+:host {
+  display: block;
+}
+
+main {
+  min-height: calc(100vh - 140px);
 }

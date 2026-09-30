@@ -1,52 +1,18 @@
-<section class="section">
+<section class="certifications" id="certifications">
+  <div class="certifications-container">
+    <h2 class="section-title">Certifications</h2>
 
-  <div class="section-header">
-
-    <span class="section-number">07</span>
-
-    <div>
-      <span class="eyebrow">SYSTEMS</span>
-      <h2>Infrastructure Lab</h2>
+    <div class="cert-list">
+      <div class="cert-card" *ngFor="let cert of certifications">
+        <div class="cert-icon">🏅</div>
+        <div class="cert-info">
+          <h3 class="cert-name">{{ cert.name }}</h3>
+          <p class="cert-meta">
+            <span class="cert-issuer">{{ cert.issuer }}</span>
+            <span class="cert-date" *ngIf="cert.date">• {{ cert.date }}</span>
+          </p>
+        </div>
+      </div>
     </div>
-
   </div>
-
-
-  <div class="lab-grid">
-
-  <div *ngFor="let cert of certifications">
-  <h3>{{ cert.name }}</h3>
-  <p>{{ cert.organization }}</p>
-  <span>{{ cert.category }}</span>
-</div>
-
-  </div>
-
-
-  <div class="network-diagram">
-
-    <div class="network-node">
-      INTERNET
-    </div>
-
-    <span class="network-line"></span>
-
-    <div class="network-node">
-      NETWORK
-    </div>
-
-    <span class="network-line"></span>
-
-    <div class="network-node">
-      SERVER
-    </div>
-
-    <span class="network-line"></span>
-
-    <div class="network-node orange">
-      CONTAINERS
-    </div>
-
-  </div>
-
 </section>
