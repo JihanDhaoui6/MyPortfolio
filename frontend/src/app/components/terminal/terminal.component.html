@@ -1,0 +1,50 @@
+<div class="terminal" (click)="focusInput()">
+
+  <!-- Barre de fenêtre -->
+  <div class="terminal-bar">
+    <div class="terminal-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="terminal-title">jihan&#64;cloud-resume — zsh</span>
+    <span class="terminal-spacer"></span>
+  </div>
+
+  <!-- Corps -->
+  <div class="terminal-body" #termBody>
+
+    <!-- Banner : TERMINAL -->
+    <!-- Banner : JIHAN -->
+<pre class="terminal-banner">
+     ██╗██╗██╗  ██╗ █████╗ ███╗   ██╗
+     ██║██║██║  ██║██╔══██╗████╗  ██║
+     ██║██║███████║███████║██╔██╗ ██║
+██   ██║██║██╔══██║██╔══██║██║╚██╗██║
+╚█████╔╝██║██║  ██║██║  ██║██║ ╚████║
+ ╚════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
+</pre>
+
+    <!-- Lignes -->
+    <div
+      *ngFor="let line of lines"
+      class="terminal-line"
+      [ngClass]="line.type">
+      <span *ngIf="line.type === 'cmd'" class="prompt">jihan&#64;cloud-resume:~$</span>
+      <span class="line-text">{{ line.text }}</span>
+    </div>
+
+    <!-- Input -->
+    <div class="terminal-input-line">
+      <span class="prompt">jihan&#64;cloud-resume:~$</span>
+      <input
+        #termInput
+        type="text"
+        class="terminal-input"
+        [(ngModel)]="currentInput"
+        (keydown)="onKeyDown($event)"
+        autocomplete="off"
+        spellcheck="false" />
+    </div>
+  </div>
+</div>

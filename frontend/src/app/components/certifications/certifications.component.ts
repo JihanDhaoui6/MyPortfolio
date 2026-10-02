@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 interface Certification {
   name: string;
   issuer: string;
-  date?: string;
+  date: string;
+  url?: string;
+  color: string;
 }
 
 @Component({
@@ -13,11 +15,24 @@ interface Certification {
 })
 export class CertificationsComponent {
   certifications: Certification[] = [
-    { name: 'Learn Ansible Basics', issuer: 'KodeKloud' },
-    { name: 'CCNA 2: Switching, Routing, and Wireless Essentials', issuer: 'Cisco' },
-    { name: 'Docker Training Course', issuer: 'KodeKloud' },
-    { name: 'Python', issuer: 'freeCodeCamp.org', date: '2022-11-29' },
-    { name: 'Fundamentals of Deep Learning', issuer: 'NVIDIA' },
-    { name: 'CCNA 1: Introduction to Networks', issuer: 'Cisco' }
+    {
+      name: 'AWS Cloud Practitioner',
+      issuer: 'Amazon Web Services',
+      date: '2025',
+      url: 'https://aws.amazon.com/certification/',
+      color: '#f59e0b'
+    },
+    {
+      name: 'Docker Certified Associate',
+      issuer: 'Docker',
+      date: '2024',
+      color: '#0ea5e9'
+    },
+    {
+      name: 'Kubernetes CKA',
+      issuer: 'CNCF',
+      date: '2024',
+      color: '#8b5cf6'
+    }
   ];
 }

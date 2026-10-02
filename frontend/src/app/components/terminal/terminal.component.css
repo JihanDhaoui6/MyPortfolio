@@ -1,0 +1,143 @@
+/* ===== Le terminal devient plus large ===== */
+.terminal {
+  width: 100%;
+  max-width: 1200px;                       /* ← 1100px → 1200px */
+  background: rgba(62, 46, 82, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid var(--clr-lilac);
+  border-radius: 14px;
+  box-shadow:
+    0 24px 60px rgba(107, 80, 130, 0.3),
+    0 0 60px rgba(167, 139, 200, 0.25);
+  overflow: hidden;
+  font-family: var(--font-code);
+  cursor: text;
+  transition: var(--transition);
+}
+
+.terminal:hover {
+  border-color: var(--clr-blush);
+  box-shadow:
+    0 28px 70px rgba(107, 80, 130, 0.4),
+    0 0 80px rgba(232, 184, 204, 0.35);
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1.2rem;
+  background: rgba(80, 60, 105, 0.85);
+  border-bottom: 1px solid rgba(201, 182, 224, 0.2);
+}
+
+.terminal-dots { display: flex; gap: 0.5rem; }
+
+.dot { width: 14px; height: 14px; border-radius: 50%; }
+.dot.red    { background: #e8b8cc; }
+.dot.yellow { background: #f5d0c5; }
+.dot.green  { background: #c8e0d5; }
+
+.terminal-title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #c9b6e0;
+  letter-spacing: 0.5px;
+}
+
+.terminal-spacer { width: 62px; }
+
+.terminal-body {
+  padding: 2rem 2.2rem;
+  max-height: 620px;
+  min-height: 500px;
+  overflow-y: auto;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #f5eef8;
+}
+
+.terminal-body::-webkit-scrollbar { width: 8px; }
+.terminal-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c9b6e0, #e8b8cc);
+  border-radius: 4px;
+}
+
+.terminal-banner {
+  color: #c9b6e0;
+  font-family: var(--font-code);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 1.6rem 0;
+  padding: 0.5rem 0;
+  text-align: left;
+  white-space: pre;
+  overflow-x: auto;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 20px rgba(201, 182, 224, 0.5);
+}
+
+.terminal-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+}
+
+.terminal-line.cmd .line-text { color: #f5eef8; font-weight: 500; }
+.terminal-line.out .line-text { color: #b8a8c9; }
+.terminal-line.ok  .line-text { color: #c8e0d5; }
+.terminal-line.err .line-text { color: #e8b8cc; }
+
+/* ===== PROMPT JAUNE CITRON ===== */
+.prompt {
+  color: #e8f44d;                          /* ← Jaune citron */
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: 0 0 12px rgba(232, 244, 77, 0.5);
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f5eef8;
+  font-family: var(--font-code);
+  font-size: 1rem;
+  caret-color: #e8f44d;                    /* ← Caret jaune citron */
+}
+
+.terminal-input::placeholder { color: #8a7a9e; }
+
+.terminal-input-line::after {
+  content: '';
+  display: inline-block;
+  width: 9px; height: 18px;
+  background: #e8b8cc;
+  animation: blink 1.2s steps(2, start) infinite;
+  margin-left: -8px;
+}
+
+@keyframes blink { to { visibility: hidden; } }
+
+@media (max-width: 600px) {
+  .terminal-body {
+    padding: 1.2rem;
+    font-size: 0.88rem;
+    min-height: 340px;
+  }
+  .terminal-banner { font-size: 0.75rem; }
+  .terminal-line,
+  .terminal-input { font-size: 0.88rem; }
+}

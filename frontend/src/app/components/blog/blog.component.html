@@ -1,0 +1,38 @@
+<section id="blog">
+  <div class="container">
+    <h2 class="section-title">Blog</h2>
+    <p class="section-subtitle">
+      Mini-articles sur le cloud, le DevOps, la sécurité et l’IA.
+    </p>
+
+    <div class="blog-grid">
+      <article
+        *ngFor="let post of posts"
+        class="blog-card card"
+        [style.--card-accent]="post.color || '#0ea5e9'"
+        (click)="open(post)">
+        <div class="blog-tags">
+          <span *ngFor="let tag of post.tags">{{ tag }}</span>
+          <span class="blog-read">{{ post.readTime }} min</span>
+        </div>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.excerpt }}</p>
+        <span class="blog-more">Lire l’article →</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="blog-modal" *ngIf="selected" (click)="close()">
+  <div class="blog-modal-content" (click)="$event.stopPropagation()">
+    <button class="blog-modal-close" (click)="close()">✕</button>
+    <div class="blog-tags">
+      <span *ngFor="let tag of selected.tags">{{ tag }}</span>
+      <span class="blog-read">{{ selected.readTime }} min</span>
+    </div>
+    <h2>{{ selected.title }}</h2>
+    <p class="blog-modal-date">{{ selected.date | date: 'dd MMMM yyyy' }}</p>
+    <p class="blog-modal-body">{{ selected.content }}</p>
+  </div>
+</div>

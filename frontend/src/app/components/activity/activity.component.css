@@ -1,0 +1,93 @@
+.activity-loading {
+  color: var(--clr-muted);
+  font-family: var(--font-code);
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.activity-card {
+  display: block;
+  padding: 1.6rem;
+  border-radius: 18px;
+  border: 2px solid;
+  transition: var(--transition-bounce);
+  background: var(--clr-lilac-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.activity-card:nth-child(1) {
+  background: linear-gradient(135deg, rgba(167, 139, 200, 0.15), rgba(201, 182, 224, 0.08));
+  border-color: var(--clr-lilac);
+}
+.activity-card:nth-child(2) {
+  background: linear-gradient(135deg, rgba(201, 182, 224, 0.2), rgba(232, 184, 204, 0.08));
+  border-color: var(--clr-lavender);
+}
+.activity-card:nth-child(3) {
+  background: linear-gradient(135deg, rgba(232, 184, 204, 0.2), rgba(245, 208, 197, 0.08));
+  border-color: var(--clr-blush);
+}
+.activity-card:nth-child(4) {
+  background: linear-gradient(135deg, rgba(200, 224, 213, 0.25), rgba(201, 182, 224, 0.08));
+  border-color: var(--clr-mint);
+}
+.activity-card:nth-child(5) {
+  background: linear-gradient(135deg, rgba(245, 208, 197, 0.2), rgba(232, 184, 204, 0.08));
+  border-color: var(--clr-peach);
+}
+.activity-card:nth-child(6) {
+  background: linear-gradient(135deg, rgba(167, 139, 200, 0.15), rgba(200, 224, 213, 0.1));
+  border-color: var(--clr-lilac);
+}
+
+.activity-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.activity-icon { font-size: 1.8rem; }
+
+.activity-type {
+  color: var(--clr-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.72rem;
+  font-family: var(--font-code);
+  font-weight: 700;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(167, 139, 200, 0.25);
+}
+
+.activity-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  color: var(--clr-text);
+}
+
+.activity-card p {
+  color: var(--clr-text-soft);
+  font-size: 0.88rem;
+  margin-bottom: 0.75rem;
+}
+
+.activity-card time {
+  font-size: 0.78rem;
+  color: var(--clr-lilac-deep);
+  font-family: var(--font-code);
+  font-weight: 600;
+}
