@@ -5,9 +5,9 @@
   flex-direction: column;
   gap: 1rem;
   padding: 2rem;
-  background: var(--clr-blue-bg);
-  border: 2px solid var(--clr-blue);
-  border-radius: 18px;
+  background: var(--clr-lilac-surface);
+  border: 2px solid var(--clr-lilac);
+  border-radius: 20px;
   box-shadow: var(--shadow-card);
 }
 
@@ -25,7 +25,7 @@
 
 .form-field label {
   font-size: 0.8rem;
-  color: var(--clr-text);
+  color: var(--clr-lilac-deep);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: var(--font-code);
@@ -34,8 +34,8 @@
 
 .form-field input,
 .form-field textarea {
-  background: var(--clr-surface);
-  border: 1.5px solid var(--clr-border-strong);
+  background: #ffffff;
+  border: 1.5px solid rgba(167, 139, 200, 0.3);
   border-radius: 10px;
   padding: 0.85rem 1rem;
   color: var(--clr-text);
@@ -47,9 +47,13 @@
 .form-field input:focus,
 .form-field textarea:focus {
   outline: none;
-  border-color: var(--clr-pink);
-  box-shadow: 0 0 0 4px rgba(244, 182, 194, 0.4);
-  background: #ffffff;
+  border-color: var(--clr-lilac);
+  box-shadow: 0 0 0 4px rgba(167, 139, 200, 0.2);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--clr-muted-soft);
 }
 
 .form-field textarea {
@@ -58,14 +62,14 @@
 }
 
 .form-success {
-  color: var(--clr-sage-deep);
+  color: #4a7a68;
   font-size: 0.95rem;
   text-align: center;
   font-weight: 700;
   padding: 0.7rem;
-  background: var(--clr-sage-bg);
+  background: rgba(200, 224, 213, 0.3);
   border-radius: 10px;
-  border: 1.5px solid var(--clr-sage);
+  border: 1.5px solid var(--clr-mint);
 }
 
 @media (max-width: 600px) {

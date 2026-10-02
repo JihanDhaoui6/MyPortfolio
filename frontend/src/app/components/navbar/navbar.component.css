@@ -1,18 +1,26 @@
+/* =================================================== */
+/*   NAVBAR — LILAS + ENCADRÉS JAUNE CITRON AU SCROLL  */
+/* =================================================== */
+
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
   padding: 1.2rem 5%;
-  transition: var(--transition);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
 }
 
+/* ===== NAVBAR APRÈS SCROLL : fond lilas translucide ===== */
 .navbar.scrolled {
-  background: rgba(237, 224, 219, 0.94);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1.5px solid var(--clr-sakura);
-  padding: 0.8rem 5%;
-  box-shadow: 0 4px 20px rgba(58, 47, 44, 0.08);
+  background: rgba(201, 182, 224, 0.55);           /* Lilas translucide */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1.5px solid rgba(167, 139, 200, 0.4);
+  padding: 0.7rem 5%;
+  box-shadow:
+    0 6px 24px rgba(107, 80, 130, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.4) inset;
 }
 
 .nav-container {
@@ -30,23 +38,30 @@
   gap: 1.25rem;
 }
 
+/* ===== LOGO ===== */
 .logo {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  cursor: pointer;
   font-weight: 800;
   font-size: 1.2rem;
-  letter-spacing: 0.5px;
   color: var(--clr-text);
+  cursor: pointer;
+  transition: transform var(--transition-bounce);
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .logo-dot {
   width: 12px; height: 12px;
   border-radius: 50%;
-  background: var(--clr-pink);
-  box-shadow: 0 0 0 4px rgba(244, 182, 194, 0.5);
-  animation: pulse 3s ease-in-out infinite;
+  background: var(--grad-signature);
+  box-shadow:
+    0 0 0 4px rgba(167, 139, 200, 0.2),
+    0 0 20px rgba(167, 139, 200, 0.5);
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -54,65 +69,101 @@
   50%      { transform: scale(1.15); opacity: 0.75; }
 }
 
-/* Compteur de visites — très visible */
+/* ===== COMPTEUR DE VISITES ===== */
 .visit-counter {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.45rem 1rem;
+  padding: 0.4rem 0.9rem;
   border-radius: 999px;
-  background: var(--clr-sakura);
-  border: 1.5px solid var(--clr-pink);
+  background: rgba(250, 246, 252, 0.85);
+  border: 1.5px solid rgba(167, 139, 200, 0.35);
   font-family: var(--font-code);
-  font-size: 0.78rem;
-  color: var(--clr-text);
+  font-size: 0.75rem;
+  color: var(--clr-lilac-deep);
   font-weight: 700;
-  transition: var(--transition);
-  box-shadow: 0 3px 12px rgba(217, 115, 143, 0.25);
+  transition: var(--transition-bounce);
 }
 
 .visit-counter:hover {
-  background: var(--clr-pink);
+  background: var(--clr-lilac);
   color: #ffffff;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(167, 139, 200, 0.4);
 }
 
-.visit-icon { font-size: 0.9rem; }
+.visit-icon { font-size: 0.85rem; }
 .visit-label { letter-spacing: 0.5px; }
 .visit-value {
   font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
 
-/* Liens */
+/* =================================================== */
+/*           LIENS — ENCADRÉS JAUNE CITRON            */
+/* =================================================== */
+
 .nav-links {
   display: flex;
-  gap: 1.6rem;
+  gap: 0.6rem;                       /* Espacement entre les encadrés */
   list-style: none;
   align-items: center;
 }
 
 .nav-links a {
+  display: inline-block;
   color: var(--clr-text-soft);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  position: relative;
-  padding: 0.4rem 0.7rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 10px;
+  border: 2px solid transparent;    /* Bordure invisible par défaut */
   cursor: pointer;
-  transition: var(--transition);
-  border-radius: 8px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
-.nav-links a:hover {
-  background: rgba(244, 182, 194, 0.4);
-  color: var(--clr-pink-deep);
+/* ===== AU SCROLL : liens encadrés par défaut ===== */
+.navbar.scrolled .nav-links a {
+  border-color: rgba(167, 139, 200, 0.25);
+  background: rgba(255, 255, 255, 0.4);
 }
 
-.nav-links a.active {
-  background: var(--clr-pink);
-  color: #ffffff;
+/* ===== AU SCROLL + HOVER : encadré jaune citron ===== */
+.navbar.scrolled .nav-links a:hover {
+  color: #6a5a00;                                        /* Texte olive foncé */
+  border-color: #e8f44d;                                 /* Bordure jaune citron */
+  background: rgba(232, 244, 77, 0.25);                  /* Fond citron clair */
+  box-shadow:
+    0 0 0 3px rgba(232, 244, 77, 0.2),
+    0 6px 16px rgba(232, 244, 77, 0.35);
+  transform: translateY(-2px);
 }
 
+/* ===== AU SCROLL + ACTIF : encadré jaune citron fort ===== */
+.navbar.scrolled .nav-links a.active {
+  color: #4a4000;
+  border-color: #e8f44d;
+  background: #e8f44d;                                   /* Fond jaune plein */
+  box-shadow:
+    0 0 0 3px rgba(232, 244, 77, 0.3),
+    0 8px 20px rgba(232, 244, 77, 0.45);
+  font-weight: 800;
+}
+
+/* ===== AVANT SCROLL (en haut de page) : pas de cadre ===== */
+.navbar:not(.scrolled) .nav-links a:hover {
+  color: var(--clr-lilac-deep);
+  background: rgba(201, 182, 224, 0.3);
+}
+
+.navbar:not(.scrolled) .nav-links a.active {
+  color: var(--clr-lilac-deep);
+  background: rgba(201, 182, 224, 0.4);
+  border-color: rgba(167, 139, 200, 0.5);
+}
+
+/* ===== BURGER ===== */
 .burger {
   display: none;
   flex-direction: column;
@@ -129,26 +180,44 @@
   border-radius: 2px;
 }
 
+/* ===== RESPONSIVE ===== */
 @media (max-width: 1100px) {
   .visit-label { display: none; }
 }
 
 @media (max-width: 950px) {
   .burger { display: flex; }
+
   .nav-links {
     position: fixed;
     top: 0; right: 0;
     flex-direction: column;
-    background: var(--clr-surface);
+    background: var(--clr-lilac-surface);
     padding: 6rem 2rem 2rem;
-    width: 260px;
+    width: 280px;
     height: 100vh;
     transform: translateX(100%);
     transition: transform var(--transition);
-    border-left: 1.5px solid var(--clr-sakura);
-    gap: 1rem;
-    align-items: flex-start;
-    box-shadow: -8px 0 30px rgba(58, 47, 44, 0.12);
+    border-left: 1.5px solid rgba(167, 139, 200, 0.4);
+    gap: 0.75rem;
+    align-items: stretch;
+    box-shadow: -8px 0 30px rgba(107, 80, 130, 0.2);
   }
+
   .nav-links.open { transform: translateX(0); }
+
+  /* Sur mobile : tous les liens encadrés */
+  .nav-links a {
+    display: block;
+    text-align: left;
+    border-color: rgba(167, 139, 200, 0.25);
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .nav-links a.active {
+    background: #e8f44d;
+    border-color: #e8f44d;
+    color: #4a4000;
+    font-weight: 800;
+  }
 }

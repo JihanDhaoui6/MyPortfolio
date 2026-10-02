@@ -6,41 +6,37 @@
 
 .cert-card {
   text-align: center;
-  position: relative;
-  overflow: hidden;
   display: block;
   padding: 1.8rem 1.5rem;
-  border-radius: 16px;
+  border-radius: 18px;
   border: 2px solid;
-  transition: var(--transition);
+  transition: var(--transition-bounce);
+  background: var(--clr-lilac-surface);
 }
 
 .cert-card:nth-child(1) {
-  background: var(--clr-cream-bg);
-  border-color: var(--clr-cream);
+  background: linear-gradient(135deg, rgba(167, 139, 200, 0.15), rgba(201, 182, 224, 0.08));
+  border-color: var(--clr-lilac);
 }
 .cert-card:nth-child(2) {
-  background: var(--clr-blue-bg);
-  border-color: var(--clr-blue);
+  background: linear-gradient(135deg, rgba(201, 182, 224, 0.2), rgba(232, 184, 204, 0.08));
+  border-color: var(--clr-lavender);
 }
 .cert-card:nth-child(3) {
-  background: var(--clr-sage-bg);
-  border-color: var(--clr-sage);
+  background: linear-gradient(135deg, rgba(232, 184, 204, 0.2), rgba(245, 208, 197, 0.08));
+  border-color: var(--clr-blush);
 }
 .cert-card:nth-child(4) {
-  background: var(--clr-sakura-bg);
-  border-color: var(--clr-sakura);
+  background: linear-gradient(135deg, rgba(200, 224, 213, 0.25), rgba(201, 182, 224, 0.08));
+  border-color: var(--clr-mint);
 }
 
 .cert-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 40px rgba(58, 47, 44, 0.18);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: var(--shadow-hover);
 }
 
-.cert-badge {
-  font-size: 2.6rem;
-  margin-bottom: 0.9rem;
-}
+.cert-badge { font-size: 2.6rem; margin-bottom: 0.9rem; }
 
 .cert-card h3 {
   font-size: 1rem;
@@ -50,13 +46,13 @@
 }
 
 .cert-issuer {
-  color: var(--clr-text-soft);
+  color: var(--clr-muted);
   font-size: 0.88rem;
   font-weight: 500;
 }
 
 .cert-date {
-  color: var(--clr-pink-deep);
+  color: var(--clr-lilac-deep);
   font-size: 0.8rem;
   margin-top: 0.6rem;
   font-family: var(--font-code);

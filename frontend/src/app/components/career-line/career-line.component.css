@@ -1,0 +1,288 @@
+/* ============ SECTION ============ */
+#career {
+  min-height: auto;
+  padding: 80px 5%;
+}
+
+/* ============ HEADER "CAREER LINE" ============ */
+.career-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.career-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--clr-text-soft);
+  text-transform: uppercase;
+  font-family: var(--font-code);
+  white-space: nowrap;
+}
+
+.career-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(143, 160, 216, 0.5) 0%,
+    rgba(143, 160, 216, 0.05) 100%);
+}
+
+/* ============ CARTE PRINCIPALE ============ */
+.career-card {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: rgba(11, 8, 41, 0.6);
+  border: 1.5px solid rgba(143, 160, 216, 0.2);
+  border-radius: 16px;
+  padding: 3rem 2rem 2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+/* ============ MARQUEUR NOW ============ */
+.now-marker {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 5;
+}
+
+.now-label {
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--clr-orange);
+  font-weight: 800;
+}
+
+.now-line {
+  display: block;
+  width: 1px;
+  height: 220px;
+  background: linear-gradient(180deg,
+    var(--clr-orange) 0%,
+    rgba(255, 107, 0, 0.05) 100%);
+  position: absolute;
+  top: 1.2rem;
+  right: 0.2rem;
+  box-shadow: 0 0 12px rgba(255, 107, 0, 0.5);
+}
+
+/* ============ LIGNES ============ */
+.career-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.row-label {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--clr-text-soft);
+  text-transform: uppercase;
+}
+
+.row-track {
+  position: relative;
+  height: 44px;
+  background: rgba(143, 160, 216, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(143, 160, 216, 0.1);
+  overflow: visible;
+}
+
+/* ============ BARRES ============ */
+.career-bar {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 8px;
+  border: 1.5px solid;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.6rem;
+  min-width: 40px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.career-bar:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 20px currentColor;
+  z-index: 3;
+}
+
+.bar-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #0b0829;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-code);
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Certaines barres ont besoin d'un label clair (fond sombre) */
+.career-bar[style*="#8fa0d8"] .bar-label,
+.career-bar[style*="#1b3451"] .bar-label {
+  color: #0b0829;
+}
+
+/* ============ AXE DES ANNÉES ============ */
+.career-years {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.years-track {
+  position: relative;
+  height: 24px;
+}
+
+.year-label {
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--clr-muted-soft);
+  letter-spacing: 1px;
+}
+
+/* ============ GRILLE VERTICALE ============ */
+.career-verticals {
+  position: absolute;
+  top: 3rem;
+  bottom: 3.5rem;
+  left: 90px;
+  right: 2rem;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+}
+
+.career-verticals span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg,
+    rgba(143, 160, 216, 0) 0%,
+    rgba(143, 160, 216, 0.08) 20%,
+    rgba(143, 160, 216, 0.08) 80%,
+    rgba(143, 160, 216, 0) 100%);
+}
+
+/* ============ TOOLTIP ============ */
+.career-tooltip {
+  max-width: 700px;
+  margin: 1.5rem auto 0;
+  padding: 1.2rem 1.5rem;
+  background: rgba(11, 8, 41, 0.95);
+  border: 1.5px solid var(--clr-orange);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.career-tooltip h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--clr-text);
+  margin-bottom: 0.3rem;
+}
+
+.tooltip-meta {
+  font-size: 0.8rem;
+  color: var(--clr-orange);
+  font-family: var(--font-code);
+  margin-bottom: 0.6rem;
+}
+
+.career-tooltip ul {
+  list-style: none;
+  padding: 0;
+}
+
+.career-tooltip li {
+  font-size: 0.85rem;
+  color: var(--clr-text-soft);
+  padding-left: 1rem;
+  position: relative;
+  margin-bottom: 0.25rem;
+}
+
+.career-tooltip li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--clr-orange);
+  font-weight: 700;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 800px) {
+  .career-card {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  .career-row,
+  .career-years {
+    grid-template-columns: 60px 1fr;
+    gap: 0.5rem;
+  }
+
+  .row-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+  }
+
+  .career-verticals {
+    left: 60px;
+    right: 1rem;
+  }
+
+  .bar-label {
+    font-size: 0.6rem;
+  }
+
+  .now-line {
+    height: 160px;
+  }
+}

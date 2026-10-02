@@ -1,12 +1,15 @@
+/* ===== Le terminal devient plus large ===== */
 .terminal {
   width: 100%;
-  max-width: 920px;
-  background: #2e2523;
-  border: 2px solid var(--clr-sakura);
+  max-width: 1200px;                       /* ← 1100px → 1200px */
+  background: rgba(62, 46, 82, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid var(--clr-lilac);
   border-radius: 14px;
   box-shadow:
-    0 24px 60px rgba(58, 47, 44, 0.3),
-    0 6px 24px rgba(217, 115, 143, 0.2);
+    0 24px 60px rgba(107, 80, 130, 0.3),
+    0 0 60px rgba(167, 139, 200, 0.25);
   overflow: hidden;
   font-family: var(--font-code);
   cursor: text;
@@ -14,55 +17,55 @@
 }
 
 .terminal:hover {
-  border-color: var(--clr-pink);
+  border-color: var(--clr-blush);
   box-shadow:
-    0 28px 70px rgba(58, 47, 44, 0.35),
-    0 8px 30px rgba(217, 115, 143, 0.3);
+    0 28px 70px rgba(107, 80, 130, 0.4),
+    0 0 80px rgba(232, 184, 204, 0.35);
 }
 
 .terminal-bar {
   display: flex;
   align-items: center;
   padding: 0.85rem 1.2rem;
-  background: #3c302d;
-  border-bottom: 1px solid rgba(244, 182, 194, 0.15);
+  background: rgba(80, 60, 105, 0.85);
+  border-bottom: 1px solid rgba(201, 182, 224, 0.2);
 }
 
 .terminal-dots { display: flex; gap: 0.5rem; }
 
 .dot { width: 14px; height: 14px; border-radius: 50%; }
-.dot.red    { background: #f4b6c2; }
-.dot.yellow { background: #e8d88a; }
-.dot.green  { background: #a8ba7a; }
+.dot.red    { background: #e8b8cc; }
+.dot.yellow { background: #f5d0c5; }
+.dot.green  { background: #c8e0d5; }
 
 .terminal-title {
   flex: 1;
   text-align: center;
   font-size: 0.85rem;
-  color: #b8a8a4;
+  color: #c9b6e0;
   letter-spacing: 0.5px;
 }
 
 .terminal-spacer { width: 62px; }
 
 .terminal-body {
-  padding: 1.8rem 2rem;
-  max-height: 560px;
-  min-height: 460px;
+  padding: 2rem 2.2rem;
+  max-height: 620px;
+  min-height: 500px;
   overflow-y: auto;
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   line-height: 1.75;
-  color: #e8dcd7;
+  color: #f5eef8;
 }
 
 .terminal-body::-webkit-scrollbar { width: 8px; }
 .terminal-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #d9738f, #a8ba7a);
+  background: linear-gradient(180deg, #c9b6e0, #e8b8cc);
   border-radius: 4px;
 }
 
 .terminal-banner {
-  color: #f4b6c2;
+  color: #c9b6e0;
   font-family: var(--font-code);
   font-size: 1.4rem;
   font-weight: 700;
@@ -73,6 +76,7 @@
   white-space: pre;
   overflow-x: auto;
   letter-spacing: 0.5px;
+  text-shadow: 0 0 20px rgba(201, 182, 224, 0.5);
 }
 
 .terminal-line {
@@ -83,15 +87,17 @@
   font-size: 1rem;
 }
 
-.terminal-line.cmd .line-text { color: #fbf6f3; font-weight: 500; }
-.terminal-line.out .line-text { color: #b8a8a4; }
-.terminal-line.ok  .line-text { color: #a8ba7a; }
-.terminal-line.err .line-text { color: #f4b6c2; }
+.terminal-line.cmd .line-text { color: #f5eef8; font-weight: 500; }
+.terminal-line.out .line-text { color: #b8a8c9; }
+.terminal-line.ok  .line-text { color: #c8e0d5; }
+.terminal-line.err .line-text { color: #e8b8cc; }
 
+/* ===== PROMPT JAUNE CITRON ===== */
 .prompt {
-  color: #d9738f;
+  color: #e8f44d;                          /* ← Jaune citron */
   font-weight: 700;
   white-space: nowrap;
+  text-shadow: 0 0 12px rgba(232, 244, 77, 0.5);
 }
 
 .terminal-input-line {
@@ -106,19 +112,19 @@
   background: transparent;
   border: none;
   outline: none;
-  color: #fbf6f3;
+  color: #f5eef8;
   font-family: var(--font-code);
   font-size: 1rem;
-  caret-color: #d9738f;
+  caret-color: #e8f44d;                    /* ← Caret jaune citron */
 }
 
-.terminal-input::placeholder { color: #6a5e5a; }
+.terminal-input::placeholder { color: #8a7a9e; }
 
 .terminal-input-line::after {
   content: '';
   display: inline-block;
   width: 9px; height: 18px;
-  background: #d9738f;
+  background: #e8b8cc;
   animation: blink 1.2s steps(2, start) infinite;
   margin-left: -8px;
 }

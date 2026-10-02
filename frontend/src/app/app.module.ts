@@ -18,6 +18,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TerminalComponent } from './components/terminal/terminal.component';
+import { BgCloudComponent } from './components/bg-cloud/bg-cloud.component';
+import { CareerLineComponent } from './components/career-line/career-line.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { TerminalComponent } from './components/terminal/terminal.component';
     BlogComponent,
     ContactComponent,
     FooterComponent,
-    TerminalComponent
+    TerminalComponent,
+    BgCloudComponent,
+    CareerLineComponent
   ],
   imports: [
     BrowserModule,

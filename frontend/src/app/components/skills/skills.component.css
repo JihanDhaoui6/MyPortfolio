@@ -5,43 +5,41 @@
 }
 
 .skill-card {
-  position: relative;
-  overflow: hidden;
   padding: 1.6rem;
-  border-radius: 16px;
+  border-radius: 18px;
   border: 2px solid;
-  transition: var(--transition);
+  transition: var(--transition-bounce);
+  background: var(--clr-lilac-surface);
 }
 
-/* Chaque carte a SA couleur */
 .skill-card:nth-child(1) {
-  background: var(--clr-sakura-bg);
-  border-color: var(--clr-sakura);
+  background: linear-gradient(135deg, rgba(167, 139, 200, 0.15), rgba(201, 182, 224, 0.08));
+  border-color: var(--clr-lilac);
 }
 .skill-card:nth-child(2) {
-  background: var(--clr-blue-bg);
-  border-color: var(--clr-blue);
+  background: linear-gradient(135deg, rgba(201, 182, 224, 0.2), rgba(232, 184, 204, 0.08));
+  border-color: var(--clr-lavender);
 }
 .skill-card:nth-child(3) {
-  background: var(--clr-sage-bg);
-  border-color: var(--clr-sage);
+  background: linear-gradient(135deg, rgba(232, 184, 204, 0.2), rgba(245, 208, 197, 0.08));
+  border-color: var(--clr-blush);
 }
 .skill-card:nth-child(4) {
-  background: var(--clr-cream-bg);
-  border-color: var(--clr-cream);
+  background: linear-gradient(135deg, rgba(200, 224, 213, 0.25), rgba(201, 182, 224, 0.08));
+  border-color: var(--clr-mint);
 }
 .skill-card:nth-child(5) {
-  background: var(--clr-pink-bg);
-  border-color: var(--clr-pink);
+  background: linear-gradient(135deg, rgba(245, 208, 197, 0.2), rgba(232, 184, 204, 0.08));
+  border-color: var(--clr-peach);
 }
 .skill-card:nth-child(6) {
-  background: var(--clr-blue-bg);
-  border-color: var(--clr-blue);
+  background: linear-gradient(135deg, rgba(167, 139, 200, 0.15), rgba(200, 224, 213, 0.1));
+  border-color: var(--clr-lilac);
 }
 
 .skill-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 40px rgba(58, 47, 44, 0.18);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-hover);
 }
 
 .skill-header {
@@ -71,14 +69,16 @@
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.7);
-  border: 1.5px solid rgba(58, 47, 44, 0.15);
-  color: var(--clr-text);
+  border: 1.5px solid rgba(167, 139, 200, 0.3);
+  color: var(--clr-text-soft);
   font-family: var(--font-code);
   font-weight: 600;
-  transition: var(--transition);
+  transition: var(--transition-bounce);
 }
 
 .skill-list li:hover {
-  background: #ffffff;
-  transform: translateY(-1px);
+  background: var(--clr-lilac);
+  color: #ffffff;
+  border-color: var(--clr-lilac);
+  transform: translateY(-2px);
 }

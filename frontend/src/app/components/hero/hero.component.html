@@ -3,6 +3,8 @@
 
     <!-- ===== GAUCHE : PHOTO + INFOS ===== -->
     <div class="hero-left">
+
+      <!-- Photo au-dessus du texte -->
       <div class="hero-photo-wrapper">
         <div class="hero-photo-ring"></div>
         <div class="hero-photo-ring ring-2"></div>
@@ -12,24 +14,39 @@
           class="hero-photo">
       </div>
 
-      <p class="hero-greeting">Bonjour, je suis</p>
-      <h1 class="hero-name">Jihan Dhaoui</h1>
-      <h2 class="hero-title">Cloud &amp; DevOps Engineer</h2>
+      <!-- Texte -->
+      <div class="hero-intro">
+        <p class="hero-greeting">Bonjour, je suis</p>
+        <h1 class="hero-name">Jihan Dhaoui</h1>
+        <h2 class="hero-title">Cloud &amp; DevOps Engineer</h2>
 
-      <div class="hero-tags">
-        <span>☁️ Cloud</span>
-        <span>⚙️ DevOps</span>
-        <span>🛡️ DevSecOps</span>
-        <span>🤖 IA</span>
+        <div class="hero-status">
+          <span class="status-dot"></span>
+          <span class="status-text">
+            À la recherche d'une opportunité <strong>PFE</strong>
+            pour démarrer ma carrière
+          </span>
+        </div>
       </div>
 
+      <!-- Tags -->
+      <div class="hero-tags">
+        <span>☁️ Cloud Native</span>
+        <span>⚙️ DevOps &amp; CI/CD</span>
+        <span>🛡️ DevSecOps</span>
+        <span>📊 Observabilité</span>
+        <span>📈 Scalabilité</span>
+        <span>🤖 IA &amp; Automatisation</span>
+      </div>
+
+      <!-- Boutons -->
       <div class="hero-actions">
         <button class="btn btn-primary" (click)="scrollTo('contact')">
           Me contacter
         </button>
-        <button class="btn btn-outline" (click)="scrollTo('projects')">
-          Voir mes projets
-        </button>
+        <a class="btn btn-outline" href="assets/cv.pdf" download="Jihan-Dhaoui-CV.pdf">
+          📄 Download CV
+        </a>
       </div>
     </div>
 

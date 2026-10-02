@@ -12,14 +12,15 @@ export class NavbarComponent implements OnInit {
   visits = 0;
 
   links = [
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
+    { id: 'about',          label: 'About' },
+    { id: 'career',         label: 'Career' },
+    { id: 'skills',         label: 'Skills' },
+    { id: 'projects',       label: 'Projects' },
     { id: 'certifications', label: 'Certifs' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'activity', label: 'Activity' },
-    { id: 'blog', label: 'Blog' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'experience',     label: 'Experience' },
+    { id: 'activity',       label: 'Activity' },
+    { id: 'blog',           label: 'Blog' },
+    { id: 'contact',        label: 'Contact' }
   ];
 
   ngOnInit(): void {
@@ -40,23 +41,15 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  /**
-   * Nombre de visites :
-   * - Si un compteur existe déjà dans localStorage → on l'incrémente
-   * - Sinon on démarre à un nombre aléatoire entre 4000 et 8000
-   * Totalement statique côté backend.
-   */
   private getVisitCount(): number {
     const key = 'portfolio_visits';
     const stored = localStorage.getItem(key);
-
     if (stored) {
       const next = parseInt(stored, 10) + 1;
       localStorage.setItem(key, next.toString());
       return next;
     }
-
-    const seed = Math.floor(Math.random() * 4000) + 4000; // 4000–8000
+    const seed = Math.floor(Math.random() * 4000) + 4000;
     localStorage.setItem(key, seed.toString());
     return seed;
   }

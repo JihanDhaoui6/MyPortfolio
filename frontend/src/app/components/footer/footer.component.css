@@ -1,9 +1,13 @@
 .footer {
   padding: 3rem 5%;
-  background: linear-gradient(135deg, var(--clr-sakura-bg) 0%, var(--clr-blue-bg) 50%, var(--clr-sage-bg) 100%);
-  border-top: 2px solid var(--clr-sakura);
+  background: linear-gradient(135deg,
+    rgba(201, 182, 224, 0.4) 0%,
+    rgba(232, 184, 204, 0.35) 50%,
+    rgba(200, 224, 213, 0.35) 100%);
+  border-top: 2px solid rgba(167, 139, 200, 0.3);
   position: relative;
   z-index: 1;
+  backdrop-filter: blur(12px);
 }
 
 .footer-content {
@@ -19,22 +23,23 @@
 
 .footer-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .footer-links a {
   color: var(--clr-text);
   font-weight: 700;
-  padding: 0.4rem 0.9rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1.5px solid transparent;
-  transition: var(--transition);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(167, 139, 200, 0.3);
+  transition: var(--transition-bounce);
 }
 
 .footer-links a:hover {
-  background: #ffffff;
-  border-color: var(--clr-pink);
-  color: var(--clr-pink-deep);
-  transform: translateY(-2px);
+  background: var(--clr-lilac);
+  border-color: var(--clr-lilac);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(167, 139, 200, 0.4);
 }

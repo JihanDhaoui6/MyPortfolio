@@ -1,0 +1,90 @@
+<section id="career">
+  <div class="container">
+
+    <!-- Titre de section type "CAREER LINE" -->
+    <div class="career-header">
+      <h2 class="career-title">CAREER LINE</h2>
+      <div class="career-rule"></div>
+    </div>
+
+    <!-- Carte principale -->
+    <div class="career-card">
+
+      <!-- Marqueur NOW à droite -->
+      <div class="now-marker">
+        <span class="now-label">NOW</span>
+        <span class="now-line"></span>
+      </div>
+
+      <!-- Ligne WORK -->
+      <div class="career-row">
+        <div class="row-label">WORK</div>
+        <div class="row-track">
+          <div
+            *ngFor="let e of workEntries"
+            class="career-bar"
+            [style.left.%]="e.left"
+            [style.width.%]="e.width"
+            [style.background]="e.color"
+            [style.borderColor]="e.color"
+            (mouseenter)="showTooltip(e)"
+            (mouseleave)="hideTooltip()">
+            <span class="bar-label">{{ e.organization }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ligne STUDY -->
+      <div class="career-row">
+        <div class="row-label">STUDY</div>
+        <div class="row-track">
+          <div
+            *ngFor="let e of studyEntries"
+            class="career-bar"
+            [style.left.%]="e.left"
+            [style.width.%]="e.width"
+            [style.background]="e.color"
+            [style.borderColor]="e.color"
+            (mouseenter)="showTooltip(e)"
+            (mouseleave)="hideTooltip()">
+            <span class="bar-label">{{ e.organization }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Axe des années -->
+      <div class="career-years">
+        <div class="row-label"></div>
+        <div class="years-track">
+          <span
+            *ngFor="let y of years"
+            class="year-label"
+            [style.left.%]="yearPosition(y)">
+            {{ y }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Grille verticale décorative -->
+      <div class="career-verticals">
+        <span *ngFor="let y of years" [style.left.%]="yearPosition(y)"></span>
+      </div>
+
+    </div>
+
+    <!-- Tooltip (détails au survol) -->
+    <div
+      class="career-tooltip"
+      *ngIf="activeEntry"
+      [style.borderColor]="activeEntry.color">
+      <h4>{{ activeEntry.title }}</h4>
+      <p class="tooltip-meta">
+        {{ activeEntry.organization }} · {{ activeEntry.location }}
+      </p>
+      <ul *ngIf="activeEntry.description?.length">
+        <li *ngFor="let d of activeEntry.description">{{ d }}</li>
+      </ul>
+    </div>
+
+  </div>
+</section>

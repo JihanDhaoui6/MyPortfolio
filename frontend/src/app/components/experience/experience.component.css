@@ -8,9 +8,10 @@
   position: absolute;
   left: 50%;
   top: 0; bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--clr-primary), var(--clr-accent));
+  width: 3px;
+  background: linear-gradient(180deg, #a78bc8, #c9b6e0, #e8b8cc, #c8e0d5);
   transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 .timeline-item {
@@ -26,31 +27,58 @@
 .timeline-dot {
   position: absolute;
   top: 1.5rem;
-  width: 14px; height: 14px;
+  width: 18px; height: 18px;
   border-radius: 50%;
-  border: 3px solid var(--clr-bg);
-  box-shadow: 0 0 20px currentColor;
+  border: 3px solid var(--clr-lilac-bg);
+  box-shadow: 0 4px 12px rgba(107, 80, 130, 0.25);
 }
 
-.timeline-item.left .timeline-dot { right: -7px; }
-.timeline-item.right .timeline-dot { left: -7px; }
+.timeline-item:nth-child(1) .timeline-dot { background: var(--clr-lilac); }
+.timeline-item:nth-child(2) .timeline-dot { background: var(--clr-lavender); }
+.timeline-item:nth-child(3) .timeline-dot { background: var(--clr-blush); }
+.timeline-item:nth-child(4) .timeline-dot { background: var(--clr-mint); }
+
+.timeline-item.left .timeline-dot { right: -9px; }
+.timeline-item.right .timeline-dot { left: -9px; }
+
+.timeline-content {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--clr-lilac-surface);
+  border-left: 5px solid var(--clr-lilac);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-bounce);
+}
+
+.timeline-content:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.timeline-item:nth-child(2) .timeline-content { border-left-color: var(--clr-lavender); }
+.timeline-item:nth-child(3) .timeline-content { border-left-color: var(--clr-blush); }
+.timeline-item:nth-child(4) .timeline-content { border-left-color: var(--clr-mint); }
 
 .timeline-period {
   font-size: 0.8rem;
-  color: var(--clr-primary);
+  color: var(--clr-lilac-deep);
   font-family: var(--font-code);
+  font-weight: 700;
   letter-spacing: 1px;
 }
 
 .timeline-content h3 {
   font-size: 1.1rem;
   margin: 0.4rem 0;
+  font-weight: 800;
+  color: var(--clr-text);
 }
 
 .timeline-company {
   color: var(--clr-muted);
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .timeline-desc {
@@ -63,5 +91,5 @@
   .timeline-item,
   .timeline-item.right { width: 100%; left: 0; padding-left: 2.5rem; padding-right: 0; text-align: left; }
   .timeline-item.left .timeline-dot,
-  .timeline-item.right .timeline-dot { left: 5px; right: auto; }
+  .timeline-item.right .timeline-dot { left: 3px; right: auto; }
 }

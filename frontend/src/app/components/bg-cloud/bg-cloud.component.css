@@ -1,0 +1,214 @@
+/* =================================================== */
+/*    BG-CLOUD — LILAC DREAM (7 couches)               */
+/* =================================================== */
+
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ============ COUCHE 1 : HALOS CLAIRS ============ */
+.cloud-halos {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 55% 45% at 12% 18%, rgba(201, 182, 224, 0.55), transparent 65%),
+    radial-gradient(ellipse 50% 42% at 88% 22%, rgba(232, 184, 204, 0.45), transparent 65%),
+    radial-gradient(ellipse 55% 45% at 75% 88%, rgba(200, 224, 213, 0.4), transparent 65%),
+    radial-gradient(ellipse 40% 35% at 20% 92%, rgba(245, 208, 197, 0.35), transparent 65%);
+  animation: haloShift 30s ease-in-out infinite alternate;
+}
+
+@keyframes haloShift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-25px, 25px) scale(1.06); }
+  100% { transform: translate(25px, -25px) scale(1); }
+}
+
+/* ============ COUCHE 2 : GRILLE CLAIRE ============ */
+.cloud-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image:
+    linear-gradient(rgba(167, 139, 200, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 184, 204, 0.1) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: gridPulse 10s ease-in-out infinite;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.85; }
+}
+
+/* ============ COUCHE 3 : RÉSEAU (CANVAS) ============ */
+.cloud-network {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  opacity: 0.75;
+}
+
+/* ============ COUCHE 4 : PÉTALES QUI TOMBENT ============ */
+.cloud-petals {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+}
+
+.cloud-petals ::ng-deep .petal {
+  position: absolute;
+  top: -20px;
+  border-radius: 50% 0 50% 50%;      /* Forme de pétale */
+  animation: petalFall linear infinite;
+  filter: blur(0.3px);
+  transform-origin: center;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  50% {
+    transform: translateY(50vh) translateX(40px) rotate(180deg);
+  }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(110vh) translateX(-30px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ============ COUCHE 5 : BULLES INTERACTIVES ============ */
+.cloud-bubbles {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.cloud-bubbles ::ng-deep .bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.25;
+  filter: blur(1px);
+  animation: bubbleFloat ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.cloud-bubbles ::ng-deep .bubble:hover {
+  transform: scale(1.8);
+  opacity: 0.6;
+}
+
+@keyframes bubbleFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-25px, 25px) scale(0.95);
+  }
+}
+
+/* ============ COUCHE 6 : ICÔNES ============ */
+.cloud-icons {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.cloud-icons .icon {
+  position: absolute;
+  font-size: 2.6rem;
+  opacity: 0.09;
+  animation: iconFloat 22s ease-in-out infinite;
+  user-select: none;
+}
+
+.icon-1 { top: 12%; left: 8%;  animation-delay: 0s; }
+.icon-2 { top: 30%; left: 88%; animation-delay: -3s; }
+.icon-3 { top: 55%; left: 15%; animation-delay: -6s; }
+.icon-4 { top: 75%; left: 82%; animation-delay: -9s; }
+.icon-5 { top: 20%; left: 50%; animation-delay: -12s; }
+.icon-6 { top: 65%; left: 45%; animation-delay: -15s; }
+.icon-7 { top: 85%; left: 30%; animation-delay: -8s; }
+.icon-8 { top: 40%; left: 70%; animation-delay: -4s; }
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-30px) rotate(8deg); }
+}
+
+/* ============ COUCHE 7 : TRAÎNE DU CURSEUR ============ */
+.cursor-trail {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.cursor-trail ::ng-deep .trail-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #a78bc8 0%, rgba(167, 139, 200, 0) 70%);
+  transform: translate(-50%, -50%);
+  animation: trailFade 0.9s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes trailFade {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .cloud-icons .icon {
+    font-size: 1.8rem;
+    opacity: 0.07;
+  }
+
+  .cloud-grid {
+    background-size: 60px 60px;
+  }
+
+  .cursor-trail { display: none; }
+}
+
+/* ============ PREFERS REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  .cloud-halos,
+  .cloud-grid,
+  .cloud-icons .icon,
+  .cloud-petals ::ng-deep .petal,
+  .cloud-bubbles ::ng-deep .bubble,
+  .cursor-trail ::ng-deep .trail-dot {
+    animation: none !important;
+  }
+}

@@ -8,12 +8,15 @@
   font-size: 1rem;
   line-height: 1.85;
   color: var(--clr-text);
-  background: var(--clr-sakura-bg);
-  border-left: 6px solid var(--clr-pink);
+  background: var(--clr-lilac-surface);
+  border-left: 6px solid var(--clr-lilac);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
 }
 
 .about-text p + p { margin-top: 1rem; }
-.about-text strong { color: var(--clr-pink-deep); font-weight: 700; }
+.about-text strong { color: var(--clr-lilac-deep); font-weight: 700; }
 
 .about-facts {
   display: grid;
@@ -28,37 +31,48 @@
   justify-content: center;
   padding: 1.5rem 1rem;
   text-align: center;
+  border-radius: 16px;
   border: 2px solid;
-  border-radius: 14px;
+  transition: var(--transition-bounce);
+  background: var(--clr-lilac-surface);
 }
 
 .fact:nth-child(1) {
-  background: var(--clr-blue-bg);
-  border-color: var(--clr-blue);
+  border-color: var(--clr-lilac);
+  background: linear-gradient(135deg, rgba(167, 139, 200, 0.15), rgba(201, 182, 224, 0.1));
 }
 .fact:nth-child(2) {
-  background: var(--clr-sage-bg);
-  border-color: var(--clr-sage);
+  border-color: var(--clr-lavender);
+  background: linear-gradient(135deg, rgba(201, 182, 224, 0.2), rgba(232, 184, 204, 0.1));
 }
 .fact:nth-child(3) {
-  background: var(--clr-cream-bg);
-  border-color: var(--clr-cream);
+  border-color: var(--clr-blush);
+  background: linear-gradient(135deg, rgba(232, 184, 204, 0.2), rgba(245, 208, 197, 0.1));
 }
 .fact:nth-child(4) {
-  background: var(--clr-pink-bg);
-  border-color: var(--clr-pink);
+  border-color: var(--clr-mint);
+  background: linear-gradient(135deg, rgba(200, 224, 213, 0.25), rgba(201, 182, 224, 0.1));
+}
+
+.fact:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: var(--shadow-hover);
 }
 
 .fact-number {
   font-size: 2.4rem;
   font-weight: 800;
-  color: var(--clr-text);
   line-height: 1;
 }
 
+.fact:nth-child(1) .fact-number { color: var(--clr-lilac-deep); }
+.fact:nth-child(2) .fact-number { color: #8a6dab; }
+.fact:nth-child(3) .fact-number { color: var(--clr-blush-deep); }
+.fact:nth-child(4) .fact-number { color: #4a7a68; }
+
 .fact-label {
   font-size: 0.8rem;
-  color: var(--clr-text-soft);
+  color: var(--clr-muted);
   margin-top: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 1px;

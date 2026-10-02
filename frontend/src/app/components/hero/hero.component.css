@@ -1,3 +1,7 @@
+/* =================================================== */
+/*              HERO — LILAC DREAM                     */
+/* =================================================== */
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -7,26 +11,28 @@
   overflow: hidden;
 }
 
+/* Terminal plus large → colonne droite plus grande */
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 4rem;
+  grid-template-columns: 0.9fr 1.5fr;     /* Photo colonne étroite + terminal large */
+  gap: 3rem;
   align-items: center;
 }
 
 .hero-left {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;                     /* ← Photo centrée au-dessus */
   text-align: center;
-  gap: 0.5rem;
+  gap: 1.2rem;
 }
 
+/* ===== PHOTO AU-DESSUS DU TEXTE ===== */
 .hero-photo-wrapper {
   position: relative;
-  width: 220px;
-  height: 220px;
-  margin-bottom: 2rem;
+  width: 170px;
+  height: 170px;
+  flex-shrink: 0;
   animation: floatPhoto 8s ease-in-out infinite;
 }
 
@@ -37,19 +43,19 @@
 
 .hero-photo-ring {
   position: absolute;
-  inset: -14px;
+  inset: -10px;
   border-radius: 50%;
-  border: 2px solid var(--clr-pink);
+  border: 2px solid var(--clr-lilac);
   animation: spinRing 24s linear infinite;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .hero-photo-ring.ring-2 {
-  inset: -28px;
-  border-color: var(--clr-sage);
+  inset: -20px;
+  border-color: var(--clr-blush);
   animation-duration: 36s;
   animation-direction: reverse;
-  opacity: 0.75;
+  opacity: 0.65;
 }
 
 @keyframes spinRing {
@@ -59,27 +65,35 @@
 
 .hero-photo {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid transparent;
   background:
-    linear-gradient(var(--clr-surface), var(--clr-surface)) padding-box,
-    linear-gradient(135deg, #d9738f, #a8c8d8, #a8ba7a) border-box;
-  box-shadow: 0 10px 40px rgba(217, 115, 143, 0.3);
-  transition: var(--transition);
+    linear-gradient(var(--clr-lilac-surface), var(--clr-lilac-surface)) padding-box,
+    linear-gradient(135deg, #a78bc8, #c9b6e0, #e8b8cc) border-box;
+  box-shadow: 0 12px 36px rgba(167, 139, 200, 0.4);
+  transition: var(--transition-bounce);
   z-index: 1;
 }
 
 .hero-photo:hover {
-  transform: scale(1.03);
-  box-shadow: 0 16px 50px rgba(217, 115, 143, 0.45);
+  transform: scale(1.05);
+  box-shadow: 0 16px 50px rgba(167, 139, 200, 0.55);
+}
+
+/* ===== TEXTE INTRO ===== */
+.hero-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .hero-greeting {
-  font-size: 0.85rem;
-  color: var(--clr-pink-deep);
+  font-size: 0.8rem;
+  color: var(--clr-lilac-deep);
   letter-spacing: 3px;
   text-transform: uppercase;
   font-family: var(--font-code);
@@ -87,77 +101,168 @@
 }
 
 .hero-name {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
   font-weight: 800;
-  line-height: 1.05;
-  background: linear-gradient(135deg, #d9738f 0%, #a8c8d8 55%, #a8ba7a 100%);
+  line-height: 1.1;
+  background: linear-gradient(135deg, #a78bc8 0%, #e8b8cc 55%, #c8e0d5 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -0.02em;
+  animation: titleFlow 6s ease-in-out infinite;
+}
+
+@keyframes titleFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
 }
 
 .hero-title {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
   font-weight: 600;
-  color: var(--clr-text);
-  margin-top: 0.4rem;
+  color: var(--clr-text-soft);
+  margin-top: 0.3rem;
 }
 
-/* Tags — chacun dans sa couleur, très visible */
+/* ===== STATUT PFE ===== */
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(232, 244, 77, 0.2);
+  border: 1.5px solid #e8f44d;
+  font-size: 0.82rem;
+  color: var(--clr-text-soft);
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 320px;
+}
+
+.hero-status strong {
+  color: #6a5a00;
+  font-weight: 800;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #7ab648;
+  box-shadow: 0 0 0 4px rgba(122, 182, 72, 0.25);
+  animation: statusPulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes statusPulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%      { transform: scale(1.3); opacity: 0.6; }
+}
+
+/* ===== TAGS (6 variantes colorées) ===== */
+
+
+
+
+
+/* ===== TAGS — 2 lignes × 3 colonnes ===== */
 .hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 3 colonnes fixes */
   gap: 0.6rem;
-  margin-top: 1.4rem;
+  margin-top: 0.8rem;
+  width: 100%;
+  max-width: 560px;
 }
 
 .hero-tags span {
-  font-size: 0.8rem;
-  padding: 0.55rem 1.1rem;
+  font-size: 0.72rem;
+  padding: 0.55rem 0.7rem;
   border-radius: 999px;
   font-family: var(--font-code);
   font-weight: 700;
-  transition: var(--transition);
+  transition: var(--transition-bounce);
   border: 2px solid;
-  color: #3a2f2c;
+  cursor: default;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
 }
 
+/* ===== Couleurs (identiques à avant) ===== */
 .hero-tags span:nth-child(1) {
-  background: var(--clr-sakura);
-  border-color: var(--clr-pink);
-  color: #7a3448;
+  background: rgba(167, 139, 200, 0.15);
+  border-color: var(--clr-lilac);
+  color: var(--clr-lilac-deep);
 }
 .hero-tags span:nth-child(2) {
-  background: var(--clr-blue);
-  border-color: var(--clr-blue-deep);
-  color: #2e5566;
+  background: rgba(201, 182, 224, 0.25);
+  border-color: var(--clr-lavender);
+  color: #6a5590;
 }
 .hero-tags span:nth-child(3) {
-  background: var(--clr-sage);
-  border-color: var(--clr-sage-deep);
-  color: #3e5020;
+  background: rgba(232, 184, 204, 0.25);
+  border-color: var(--clr-blush);
+  color: #a8628a;
 }
 .hero-tags span:nth-child(4) {
-  background: var(--clr-cream);
-  border-color: var(--clr-cream-deep);
-  color: #5e4a10;
+  background: rgba(200, 224, 213, 0.3);
+  border-color: var(--clr-mint);
+  color: #4a7a68;
+}
+.hero-tags span:nth-child(5) {
+  background: rgba(245, 208, 197, 0.3);
+  border-color: var(--clr-peach);
+  color: #a86040;
+}
+.hero-tags span:nth-child(6) {
+  background: rgba(232, 244, 77, 0.25);
+  border-color: #e8f44d;
+  color: #6a5a00;
 }
 
 .hero-tags span:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(58, 47, 44, 0.2);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 20px rgba(167, 139, 200, 0.3);
 }
 
+/* ===== Responsive — 2 colonnes sur mobile ===== */
+@media (max-width: 700px) {
+  .hero-tags {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-tags {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-tags span {
+    font-size: 0.7rem;
+    padding: 0.5rem 0.6rem;
+  }
+}
+
+/* ===== BOUTONS ===== */
 .hero-actions {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   flex-wrap: wrap;
   justify-content: center;
 }
 
+/* ===== DROITE : TERMINAL ===== */
 .hero-right {
   display: flex;
   justify-content: center;
@@ -165,11 +270,44 @@
   width: 100%;
 }
 
+/* =================================================== */
+/*                    RESPONSIVE                       */
+/* =================================================== */
+
+@media (max-width: 1200px) {
+  .hero-grid {
+    grid-template-columns: 0.95fr 1.4fr;
+    gap: 2rem;
+  }
+}
+
 @media (max-width: 1000px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
-  .hero-photo-wrapper { width: 180px; height: 180px; }
-  .hero-photo { width: 180px; height: 180px; }
+
+  .hero-photo-wrapper { width: 150px; height: 150px; }
+  .hero-photo { width: 150px; height: 150px; }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 100px 5% 60px;
+  }
+
+  .hero-photo-wrapper { width: 130px; height: 130px; }
+  .hero-photo { width: 130px; height: 130px; }
+
+  .hero-name { font-size: 1.7rem; }
+
+  .hero-tags span {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .hero-status {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.9rem;
+  }
 }
