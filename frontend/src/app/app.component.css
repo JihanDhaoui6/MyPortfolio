@@ -1,7 +1,4 @@
-:host {
-  display: block;
-}
-
 main {
-  min-height: calc(100vh - 140px);
+  position: relative;
+  z-index: 1;
 }

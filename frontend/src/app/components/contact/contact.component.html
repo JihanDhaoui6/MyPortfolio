@@ -1,90 +1,34 @@
-<section class="contact" id="contact">
-  <div class="contact-container">
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-subtitle">
+      Une question, une opportunité, une idée ? Écris-moi.
+    </p>
 
-    <!-- Écran verrouillé : défi -->
-    <div class="challenge" *ngIf="!unlocked">
-      <div class="lock-icon">🔒</div>
-      <h2 class="section-title">Débloque mes infos de contact</h2>
-      <p class="contact-subtitle">
-        3 questions DevOps. Réponds correctement et mon contact s'affiche.
+    <form class="contact-form card" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="name">Nom</label>
+          <input id="name" type="text" formControlName="name" placeholder="Ton nom">
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" placeholder="ton@email.com">
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" formControlName="message" placeholder="Ton message…"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Envoyer
+      </button>
+
+      <p *ngIf="submitted" class="form-success">
+        ✓ Message envoyé. Merci !
       </p>
-
-      <!-- Barre de progression -->
-      <div class="progress-track">
-        <div
-          class="progress-step"
-          *ngFor="let q of questions; let i = index"
-          [class.done]="i < currentIndex"
-          [class.active]="i === currentIndex"
-        ></div>
-      </div>
-
-      <div class="terminal-box">
-        <div class="terminal-line prompt-row">
-          <span class="prompt">jihan&#64;challenge:~$</span>
-          <span class="q-index">Q{{ currentIndex + 1 }}/{{ questions.length }}</span>
-        </div>
-
-        <p class="question-text">{{ questions[currentIndex].question }}</p>
-
-        <div class="answer-row">
-          <span class="prompt">&gt;</span>
-          <input
-            class="answer-input"
-            type="text"
-            [(ngModel)]="userAnswer"
-            (keydown.enter)="checkAnswer()"
-            placeholder="tape ta réponse ici..."
-            autofocus
-          />
-        </div>
-
-        <div class="challenge-actions">
-          <button class="btn btn-primary" (click)="checkAnswer()">Valider ▸</button>
-          <button class="btn btn-ghost" (click)="showHint()">💡 Indice</button>
-        </div>
-
-        <p class="feedback" *ngIf="feedback" [class.error]="!lastCorrect" [class.success]="lastCorrect">
-          {{ feedback }}
-        </p>
-      </div>
-    </div>
-
-    <!-- Écran débloqué -->
-    <div class="unlocked" *ngIf="unlocked">
-      <div class="confetti" *ngFor="let c of confettiPieces" [style.left.%]="c.left" [style.animation-delay.s]="c.delay"></div>
-
-      <div class="unlock-icon">🎉</div>
-      <h2 class="section-title">Bien joué, tu es connecté(e) !</h2>
-      <p class="contact-subtitle">
-        Prêt(e) à en discuter ? Voici mes coordonnées :
-      </p>
-
-      <div class="contact-cards">
-        <a class="contact-card" href="mailto:contact@jihandhaoui.dev">
-          <span class="icon">✉️</span>
-          <span class="label">Email</span>
-          <span class="value">contact&#64;jihandhaoui.dev</span>
-        </a>
-        <a class="contact-card" href="https://linkedin.com/in/jihandhaoui" target="_blank">
-          <span class="icon">💼</span>
-          <span class="label">LinkedIn</span>
-          <span class="value">/in/jihandhaoui</span>
-        </a>
-        <a class="contact-card" href="https://github.com/jihandhaoui" target="_blank">
-          <span class="icon">🐙</span>
-          <span class="label">GitHub</span>
-          <span class="value">&#64;jihandhaoui</span>
-        </a>
-        <a class="contact-card" href="assets/cv/Jihan-Dhaoui-CV.pdf" target="_blank">
-          <span class="icon">📄</span>
-          <span class="label">CV</span>
-          <span class="value">Télécharger</span>
-        </a>
-      </div>
-
-      <p class="contact-footnote">📍 Tunisia • Disponible pour missions remote &amp; on-site</p>
-    </div>
-
+    </form>
   </div>
 </section>

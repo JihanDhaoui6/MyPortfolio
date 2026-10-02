@@ -1,0 +1,42 @@
+<section id="hero" class="hero">
+  <div class="container hero-grid">
+
+    <!-- ===== GAUCHE : PHOTO + INFOS ===== -->
+    <div class="hero-left">
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo-ring"></div>
+        <div class="hero-photo-ring ring-2"></div>
+        <img
+          src="assets/profile.png"
+          alt="Jihan Dhaoui"
+          class="hero-photo">
+      </div>
+
+      <p class="hero-greeting">Bonjour, je suis</p>
+      <h1 class="hero-name">Jihan Dhaoui</h1>
+      <h2 class="hero-title">Cloud &amp; DevOps Engineer</h2>
+
+      <div class="hero-tags">
+        <span>☁️ Cloud</span>
+        <span>⚙️ DevOps</span>
+        <span>🛡️ DevSecOps</span>
+        <span>🤖 IA</span>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" (click)="scrollTo('contact')">
+          Me contacter
+        </button>
+        <button class="btn btn-outline" (click)="scrollTo('projects')">
+          Voir mes projets
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== DROITE : TERMINAL ===== -->
+    <div class="hero-right">
+      <app-terminal></app-terminal>
+    </div>
+
+  </div>
+</section>

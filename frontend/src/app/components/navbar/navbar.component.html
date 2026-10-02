@@ -1,132 +1,35 @@
-<nav class="navbar">
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="nav-container">
 
-  <!-- LEFT : MENU -->
-  <div class="navbar-left">
+    <!-- Logo + compteur de visites -->
+    <div class="nav-left">
+      <a class="logo" (click)="scrollTo('hero')">
+        <span class="logo-dot"></span>
+        <span class="logo-text">JD</span>
+      </a>
 
-    <button
-      class="menu-button"
-      type="button"
-      (click)="toggleMenu()"
-      aria-label="Open menu">
-
-      <span class="menu-icon">
-        ☰
-      </span>
-
-      <span>Menu</span>
-
-    </button>
-
-  </div>
-
-
-  <!-- CENTER : VISITOR COUNTER -->
-  <div class="visitor-counter">
-
-    <span class="eye">
-      👁
-    </span>
-
-    <span class="visitor-number">
-      {{ visitorCount }}
-    </span>
-
-  </div>
-
-
-  <!-- RIGHT : LANGUAGE + THEME -->
-  <div class="navbar-right">
-
-    <button
-      class="language-button"
-      type="button"
-      (click)="toggleLanguage()">
-
-      <span class="globe">🌐</span>
-
-      <span>{{ language }}</span>
-
-    </button>
-
-
-    <button
-      class="theme-button"
-      type="button"
-      (click)="toggleTheme()"
-      aria-label="Toggle dark mode">
-
-      <span *ngIf="!darkMode">☾</span>
-      <span *ngIf="darkMode">☀</span>
-
-    </button>
-
-  </div>
-
-</nav>
-
-
-<!-- MENU OVERLAY -->
-
-<div
-  class="menu-overlay"
-  *ngIf="menuOpen"
-  (click)="closeMenu()">
-
-  <div
-    class="menu-panel"
-    (click)="$event.stopPropagation()">
-
-    <button
-      class="close-button"
-      type="button"
-      (click)="closeMenu()">
-
-      ×
-
-    </button>
-
-
-    <div class="menu-title">
-      <span>Navigation</span>
+      <div class="visit-counter" title="Nombre de visites">
+        <span class="visit-icon">👁</span>
+        <span class="visit-label">Views:</span>
+        <span class="visit-value">{{ visits | number }}</span>
+      </div>
     </div>
 
-
-    <ul>
-
-      <li>
-        <a routerLink="/" (click)="closeMenu()">Home</a>
-      </li>
-
-      <li>
-        <a routerLink="/about" (click)="closeMenu()">About</a>
-      </li>
-
-      <li>
-        <a routerLink="/skills" (click)="closeMenu()">Skills</a>
-      </li>
-
-      <li>
-        <a routerLink="/projects" (click)="closeMenu()">Projects</a>
-      </li>
-
-      <li>
-        <a routerLink="/certifications" (click)="closeMenu()">
-          Certifications
+    <!-- Liens -->
+    <ul class="nav-links" [class.open]="isMobileOpen">
+      <li *ngFor="let link of links">
+        <a
+          (click)="scrollTo(link.id)"
+          [class.active]="activeSection === link.id">
+          {{ link.label }}
         </a>
       </li>
-
-      <li>
-        <a routerLink="/experience" (click)="closeMenu()">
-          Experience
-        </a>
-      </li>
-
-      <li>
-        <a routerLink="/contact" (click)="closeMenu()">Contact</a>
-      </li>
-
     </ul>
 
-  </div>
+    <!-- Burger mobile -->
+    <button class="burger" (click)="isMobileOpen = !isMobileOpen" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
 
-</div>
+  </div>
+</nav>

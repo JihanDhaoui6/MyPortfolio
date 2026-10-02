@@ -1,278 +1,73 @@
-:host {
-  display: block;
-  --accent: #ff6a00;
-  --accent-hover: #ff8a33;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-}
-
-.contact {
-  position: relative;
-  background: #0a0e14;
-  padding: 90px 20px 100px;
-  border-top: 1px solid #30363d;
-  overflow: hidden;
-}
-
-.contact-container {
-  position: relative;
-  max-width: 640px;
+.contact-form {
+  max-width: 700px;
   margin: 0 auto;
-  text-align: center;
-}
-
-.section-title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #fff;
-  margin: 0 0 10px;
-}
-
-.contact-subtitle {
-  color: #8b949e;
-  font-size: 0.95rem;
-  margin: 0 0 30px;
-}
-
-.lock-icon,
-.unlock-icon {
-  font-size: 2.6rem;
-  margin-bottom: 14px;
-}
-
-/* Barre de progression */
-.progress-track {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 28px;
-}
-
-.progress-step {
-  width: 40px;
-  height: 5px;
-  border-radius: 3px;
-  background: #30363d;
-  transition: background 0.3s ease;
-}
-
-.progress-step.active {
-  background: var(--accent);
-  box-shadow: 0 0 8px rgba(255, 106, 0, 0.6);
-}
-
-.progress-step.done {
-  background: #3fb950;
-}
-
-/* Bloc terminal du défi */
-.terminal-box {
-  background: #0d1117;
-  border: 1px solid #30363d;
-  border-radius: 12px;
-  padding: 28px 26px;
-  text-align: left;
-  font-family: "Courier New", monospace;
-}
-
-.terminal-line.prompt-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.prompt {
-  color: #3fb950;
-  font-size: 0.85rem;
-}
-
-.q-index {
-  color: #8b949e;
-  font-size: 0.8rem;
-}
-
-.question-text {
-  color: #e6edf3;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0 0 18px;
-}
-
-.answer-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 8px;
-  padding: 10px 14px;
-  margin-bottom: 18px;
-}
-
-.answer-row .prompt {
-  color: var(--accent);
-}
-
-.answer-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #e6edf3;
-  font-family: inherit;
-  font-size: 0.95rem;
-  caret-color: var(--accent);
-}
-
-.challenge-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  font-size: 0.9rem;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background: var(--accent-hover);
-}
-
-.btn-ghost {
-  background: transparent;
-  color: #8b949e;
-  border: 1px solid #30363d;
-}
-
-.btn-ghost:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.feedback {
-  margin: 16px 0 0;
-  font-size: 0.88rem;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-}
-
-.feedback.error {
-  color: #f85149;
-}
-
-.feedback.success {
-  color: #3fb950;
-}
-
-/* Écran débloqué */
-.unlocked {
-  position: relative;
-  animation: fadeUp 0.5s ease;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.contact-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 16px;
-  margin: 30px 0;
-}
-
-.contact-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 14px;
-  padding: 20px 12px;
-  text-decoration: none;
-  color: #e6edf3;
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 1rem;
+  padding: 2rem;
+  background: var(--clr-blue-bg);
+  border: 2px solid var(--clr-blue);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card);
 }
 
-.contact-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(255, 106, 0, 0.15);
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
-.contact-card .icon {
-  font-size: 1.7rem;
-  margin-bottom: 4px;
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
-.contact-card .label {
+.form-field label {
   font-size: 0.8rem;
-  color: #8b949e;
-  font-weight: 600;
+  color: var(--clr-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--font-code);
+  font-weight: 700;
 }
 
-.contact-card .value {
-  font-size: 0.78rem;
-  color: var(--accent);
+.form-field input,
+.form-field textarea {
+  background: var(--clr-surface);
+  border: 1.5px solid var(--clr-border-strong);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  color: var(--clr-text);
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  transition: var(--transition);
 }
 
-.contact-footnote {
-  color: #8b949e;
-  font-size: 0.85rem;
-  margin: 10px 0 0;
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--clr-pink);
+  box-shadow: 0 0 0 4px rgba(244, 182, 194, 0.4);
+  background: #ffffff;
 }
 
-/* Confettis */
-.confetti {
-  position: absolute;
-  top: -20px;
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
-  border-radius: 2px;
-  opacity: 0.9;
-  animation: fall 2.4s ease-in forwards;
-  pointer-events: none;
+.form-field textarea {
+  resize: vertical;
+  min-height: 130px;
 }
 
-.confetti:nth-child(3n) { background: #3fb950; }
-.confetti:nth-child(3n + 1) { background: #58a6ff; }
-
-@keyframes fall {
-  to {
-    transform: translateY(420px) rotate(360deg);
-    opacity: 0;
-  }
+.form-success {
+  color: var(--clr-sage-deep);
+  font-size: 0.95rem;
+  text-align: center;
+  font-weight: 700;
+  padding: 0.7rem;
+  background: var(--clr-sage-bg);
+  border-radius: 10px;
+  border: 1.5px solid var(--clr-sage);
 }
 
-@media (max-width: 500px) {
-  .terminal-box {
-    padding: 20px 18px;
-  }
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
 }

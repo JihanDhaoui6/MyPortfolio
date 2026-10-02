@@ -1,1 +1,243 @@
-/* You can add global styles to this file, and also import other style files */
+/* ========== RESET & BASE ========== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ===== 5 COULEURS SIGNATURES ===== */
+  --clr-sakura: #f4b6c2;
+  --clr-sakura-deep: #e694a6;
+  --clr-pink: #d9738f;
+  --clr-pink-deep: #b85672;
+  --clr-blue: #a8c8d8;
+  --clr-blue-deep: #7aa8bd;
+  --clr-sage: #a8ba7a;
+  --clr-sage-deep: #849a56;
+  --clr-cream: #e8d88a;
+  --clr-cream-deep: #c9b757;
+
+  /* Variantes très claires (fonds de sections colorées) */
+  --clr-sakura-bg: #f9dde4;
+  --clr-pink-bg: #f0c2cf;
+  --clr-blue-bg: #d5e5ee;
+  --clr-sage-bg: #dde5c8;
+  --clr-cream-bg: #f4eec6;
+
+  /* Fonds neutres chauds */
+  --clr-bg: #ede0db;
+  --clr-bg-2: #f3e9e5;
+  --clr-surface: #fbf7f4;
+  --clr-surface-2: #f5ece7;
+
+  /* Texte */
+  --clr-text: #3a2f2c;
+  --clr-text-soft: #5a4a45;
+  --clr-muted: #7a6a64;
+  --clr-muted-soft: #9a8a84;
+
+  /* Bordures */
+  --clr-border: rgba(58, 47, 44, 0.12);
+  --clr-border-strong: rgba(58, 47, 44, 0.2);
+
+  /* Dégradés */
+  --grad-signature: linear-gradient(135deg, #d9738f 0%, #a8c8d8 50%, #a8ba7a 100%);
+  --grad-warm: linear-gradient(135deg, #f4b6c2 0%, #e8d88a 100%);
+  --grad-cool: linear-gradient(135deg, #a8c8d8 0%, #a8ba7a 100%);
+
+  /* Ombres */
+  --shadow-soft: 0 4px 16px rgba(58, 47, 44, 0.08);
+  --shadow-card: 0 8px 28px rgba(58, 47, 44, 0.1);
+  --shadow-hover: 0 14px 40px rgba(217, 115, 143, 0.22);
+
+  --font-main: 'Inter', system-ui, sans-serif;
+  --font-code: 'JetBrains Mono', 'Fira Code', monospace;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  position: relative;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+img { max-width: 100%; display: block; }
+
+/* =================================================== */
+/*     BACKGROUND BLOSSOM — COULEURS BIEN VISIBLES     */
+/* =================================================== */
+
+.bg-aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 12% 18%, rgba(244, 182, 194, 0.8), transparent 60%),
+    radial-gradient(ellipse 50% 42% at 88% 22%, rgba(168, 200, 216, 0.75), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 75% 88%, rgba(168, 186, 122, 0.65), transparent 60%),
+    radial-gradient(ellipse 40% 35% at 20% 92%, rgba(232, 216, 138, 0.6), transparent 60%);
+  animation: auroraShift 26s ease-in-out infinite alternate;
+}
+
+@keyframes auroraShift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-20px, 20px) scale(1.06); }
+  100% { transform: translate(20px, -20px) scale(1); }
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(168, 186, 122, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 115, 143, 0.18) 1px, transparent 1px);
+  background-size: 70px 70px;
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 82%);
+}
+
+.bg-particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.85;
+  animation: floatUp linear infinite;
+}
+
+.particle.sakura { background: #f4b6c2; }
+.particle.blue   { background: #a8c8d8; }
+.particle.sage   { background: #a8ba7a; }
+.particle.cream  { background: #e8d88a; }
+.particle.pink   { background: #d9738f; }
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  15%  { opacity: 0.9; }
+  85%  { opacity: 0.9; }
+  100% { transform: translateY(-110vh) translateX(40px) scale(1.3); opacity: 0; }
+}
+
+/* ========== LAYOUT ========== */
+section {
+  min-height: 100vh;
+  padding: 100px 5%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ========== TYPO ========== */
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: var(--grad-signature);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  color: var(--clr-text-soft);
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+  max-width: 640px;
+}
+
+/* ========== CARTES GÉNÉRIQUES ========== */
+.card {
+  background: var(--clr-surface);
+  border: 1.5px solid var(--clr-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--clr-pink);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ========== BOUTONS ========== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1.5px solid transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--clr-pink);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(217, 115, 143, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--clr-pink-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(217, 115, 143, 0.5);
+}
+
+.btn-outline {
+  background: var(--clr-surface);
+  border-color: var(--clr-pink);
+  color: var(--clr-pink);
+  font-weight: 600;
+}
+
+.btn-outline:hover {
+  background: var(--clr-pink);
+  color: #ffffff;
+  border-color: var(--clr-pink);
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--clr-bg-2); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d9738f, #a8c8d8, #a8ba7a);
+  border-radius: 6px;
+  border: 3px solid var(--clr-bg-2);
+}
+
+::selection {
+  background: var(--clr-sakura);
+  color: var(--clr-text);
+}

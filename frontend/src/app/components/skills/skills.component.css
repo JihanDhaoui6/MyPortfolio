@@ -1,76 +1,84 @@
-:host {
-  display: block;
-  --accent: #ff6a00;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-}
-
-.skills {
-  background: #0d1117;
-  padding: 70px 20px;
-  border-top: 1px solid #30363d;
-}
-
-.skills-container {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.section-title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #fff;
-  text-align: center;
-  margin: 0 0 40px;
-}
-
-.section-title::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--accent);
-  margin: 12px auto 0;
-  border-radius: 2px;
-}
-
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  gap: 1.5rem;
 }
 
-.skill-category {
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 12px;
-  padding: 22px 20px;
-  transition: border-color 0.15s ease, transform 0.15s ease;
+.skill-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.6rem;
+  border-radius: 16px;
+  border: 2px solid;
+  transition: var(--transition);
 }
 
-.skill-category:hover {
-  border-color: var(--accent);
-  transform: translateY(-3px);
+/* Chaque carte a SA couleur */
+.skill-card:nth-child(1) {
+  background: var(--clr-sakura-bg);
+  border-color: var(--clr-sakura);
+}
+.skill-card:nth-child(2) {
+  background: var(--clr-blue-bg);
+  border-color: var(--clr-blue);
+}
+.skill-card:nth-child(3) {
+  background: var(--clr-sage-bg);
+  border-color: var(--clr-sage);
+}
+.skill-card:nth-child(4) {
+  background: var(--clr-cream-bg);
+  border-color: var(--clr-cream);
+}
+.skill-card:nth-child(5) {
+  background: var(--clr-pink-bg);
+  border-color: var(--clr-pink);
+}
+.skill-card:nth-child(6) {
+  background: var(--clr-blue-bg);
+  border-color: var(--clr-blue);
 }
 
-.category-title {
+.skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(58, 47, 44, 0.18);
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.skill-icon { font-size: 1.8rem; }
+
+.skill-header h3 {
   font-size: 1.05rem;
-  color: #fff;
-  margin: 0 0 16px;
+  font-weight: 800;
+  color: var(--clr-text);
 }
 
-.tags {
+.skill-list {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
-.tag {
-  background: rgba(255, 106, 0, 0.12);
-  color: var(--accent);
-  border: 1px solid rgba(255, 106, 0, 0.35);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
+.skill-list li {
+  font-size: 0.78rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(58, 47, 44, 0.15);
+  color: var(--clr-text);
+  font-family: var(--font-code);
   font-weight: 600;
-  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.skill-list li:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
 }

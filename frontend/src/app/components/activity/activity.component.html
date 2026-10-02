@@ -1,0 +1,28 @@
+<section id="activity">
+  <div class="container">
+    <h2 class="section-title">Activity</h2>
+    <p class="section-subtitle">
+      Mes derniers pushs, posts et articles — en direct de mon univers tech.
+    </p>
+
+    <p *ngIf="loading" class="activity-loading">Chargement…</p>
+
+    <div class="activity-grid" *ngIf="!loading">
+      <a
+        *ngFor="let item of activities"
+        [href]="item.url"
+        target="_blank"
+        rel="noopener"
+        class="activity-card"
+        [style.--card-accent]="item.color">
+        <div class="activity-header">
+          <span class="activity-icon">{{ item.icon }}</span>
+          <span class="activity-type">{{ item.type }}</span>
+        </div>
+        <h3>{{ item.title }}</h3>
+        <p *ngIf="item.description">{{ item.description }}</p>
+        <time>{{ item.date | date: 'dd MMM yyyy' }}</time>
+      </a>
+    </div>
+  </div>
+</section>
