@@ -6,6 +6,8 @@ interface Certification {
   date: string;
   url?: string;
   color: string;
+  icon: string;
+  category: 'cloud' | 'devops' | 'network' | 'ia' | 'programming';
 }
 
 @Component({
@@ -15,24 +17,73 @@ interface Certification {
 })
 export class CertificationsComponent {
   certifications: Certification[] = [
+    // ===== 2026 =====
     {
-      name: 'AWS Cloud Practitioner',
+      name: 'AWS Academy Cloud Operations',
       issuer: 'Amazon Web Services',
-      date: '2025',
+      date: '10/2026',
       url: 'https://aws.amazon.com/certification/',
-      color: '#f59e0b'
+      color: '#f59e0b',
+      icon: '☁️',
+      category: 'cloud'
     },
     {
-      name: 'Docker Certified Associate',
-      issuer: 'Docker',
-      date: '2024',
-      color: '#0ea5e9'
+      name: 'Fundamentals of Deep Learning',
+      issuer: 'NVIDIA',
+      date: '04/2026',
+      color: '#10b981',
+      icon: '🤖',
+      category: 'ia'
     },
     {
-      name: 'Kubernetes CKA',
-      issuer: 'CNCF',
-      date: '2024',
-      color: '#8b5cf6'
+      name: 'Learn Ansible Basics',
+      issuer: 'KodeKloud',
+      date: '02/2026',
+      color: '#a78bc8',
+      icon: '⚙️',
+      category: 'devops'
+    },
+    {
+      name: 'Docker Training Course',
+      issuer: 'KodeKloud',
+      date: '02/2026',
+      color: '#0ea5e9',
+      icon: '🐳',
+      category: 'devops'
+    },
+
+    // ===== 2025 =====
+    {
+      name: 'CCNA 2 : Switching, Routing & Wireless Essentials',
+      issuer: 'Cisco',
+      date: '05/2025',
+      color: '#8fa0d8',
+      icon: '🌐',
+      category: 'network'
+    },
+    {
+      name: 'CCNA 1 : Introduction to Networks',
+      issuer: 'Cisco',
+      date: '05/2025',
+      color: '#c9b6e0',
+      icon: '📡',
+      category: 'network'
+    },
+
+    // ===== 2022 =====
+    {
+      name: 'Python',
+      issuer: 'freeCodeCamp.org',
+      date: '11/2022',
+      url: 'https://www.freecodecamp.org/certification/',
+      color: '#e8b8cc',
+      icon: '🐍',
+      category: 'programming'
     }
   ];
+
+  /** Compteur par catégorie */
+  get totalCerts(): number {
+    return this.certifications.length;
+  }
 }

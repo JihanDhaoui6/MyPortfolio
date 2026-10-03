@@ -2,20 +2,34 @@
   <div class="container">
     <h2 class="section-title">Certifications</h2>
     <p class="section-subtitle">
-      Mes validations techniques et parcours de montée en compétence.
+      <strong>{{ totalCerts }}</strong> certifications validées — du cloud à l'IA,
+      en passant par le DevOps et le réseau.
     </p>
 
     <div class="certs-grid">
       <a
         *ngFor="let c of certifications"
         [href]="c.url || '#'"
-        target="_blank"
-        class="cert-card card"
-        [style.--card-accent]="c.color">
-        <div class="cert-badge">🏅</div>
-        <h3>{{ c.name }}</h3>
+        [attr.target]="c.url ? '_blank' : null"
+        [attr.rel]="c.url ? 'noopener' : null"
+        class="cert-card"
+        [style.--accent]="c.color"
+        [class.clickable]="c.url">
+
+        <!-- Badge icône -->
+        <div class="cert-badge">
+          <span class="cert-icon">{{ c.icon }}</span>
+        </div>
+
+        <!-- Contenu -->
+        <h3 class="cert-name">{{ c.name }}</h3>
         <p class="cert-issuer">{{ c.issuer }}</p>
-        <p class="cert-date">{{ c.date }}</p>
+
+        <!-- Footer : date + catégorie -->
+        <div class="cert-footer">
+          <span class="cert-date">{{ c.date }}</span>
+          <span class="cert-category">{{ c.category }}</span>
+        </div>
       </a>
     </div>
   </div>

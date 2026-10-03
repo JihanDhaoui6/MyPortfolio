@@ -1,60 +1,129 @@
+/* =================================================== */
+/*              CERTIFICATIONS — LILAC DREAM           */
+/* =================================================== */
+
 .certs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.4rem;
 }
 
+/* ===== Carte certification ===== */
 .cert-card {
-  text-align: center;
-  display: block;
-  padding: 1.8rem 1.5rem;
-  border-radius: 18px;
-  border: 2px solid;
-  transition: var(--transition-bounce);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.6rem 1.4rem 1.3rem;
+  border-radius: 16px;
   background: var(--clr-lilac-surface);
+  border: 1.5px solid rgba(167, 139, 200, 0.2);
+  border-top: 5px solid var(--accent, var(--clr-lilac));
+  transition: var(--transition-bounce);
+  box-shadow: 0 8px 24px rgba(167, 139, 200, 0.1);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
 }
 
-.cert-card:nth-child(1) {
-  background: linear-gradient(135deg, rgba(167, 139, 200, 0.15), rgba(201, 182, 224, 0.08));
-  border-color: var(--clr-lilac);
-}
-.cert-card:nth-child(2) {
-  background: linear-gradient(135deg, rgba(201, 182, 224, 0.2), rgba(232, 184, 204, 0.08));
-  border-color: var(--clr-lavender);
-}
-.cert-card:nth-child(3) {
-  background: linear-gradient(135deg, rgba(232, 184, 204, 0.2), rgba(245, 208, 197, 0.08));
-  border-color: var(--clr-blush);
-}
-.cert-card:nth-child(4) {
-  background: linear-gradient(135deg, rgba(200, 224, 213, 0.25), rgba(201, 182, 224, 0.08));
-  border-color: var(--clr-mint);
+.cert-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at 100% 0%,
+    var(--accent, var(--clr-lilac)) 0%,
+    transparent 45%);
+  opacity: 0.06;
+  pointer-events: none;
 }
 
 .cert-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(167, 139, 200, 0.25);
+  border-color: var(--accent, var(--clr-lilac));
 }
 
-.cert-badge { font-size: 2.6rem; margin-bottom: 0.9rem; }
+/* ===== Badge icône ===== */
+.cert-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: var(--accent, var(--clr-lilac));
+  box-shadow: 0 6px 18px rgba(167, 139, 200, 0.35);
+  margin-bottom: 0.3rem;
+  flex-shrink: 0;
+}
 
-.cert-card h3 {
+.cert-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+/* ===== Titre ===== */
+.cert-name {
   font-size: 1rem;
   font-weight: 800;
   color: var(--clr-text);
-  margin-bottom: 0.4rem;
+  line-height: 1.3;
+  margin: 0;
 }
 
+/* ===== Émetteur ===== */
 .cert-issuer {
   color: var(--clr-muted);
-  font-size: 0.88rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ===== Footer : date + catégorie ===== */
+.cert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(167, 139, 200, 0.25);
 }
 
 .cert-date {
-  color: var(--clr-lilac-deep);
-  font-size: 0.8rem;
-  margin-top: 0.6rem;
   font-family: var(--font-code);
+  font-size: 0.75rem;
   font-weight: 700;
+  color: var(--accent, var(--clr-lilac-deep));
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(167, 139, 200, 0.12);
+  border: 1px solid rgba(167, 139, 200, 0.2);
+  letter-spacing: 0.3px;
+}
+
+.cert-category {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--clr-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(42, 30, 62, 0.15);
+  border: 1px solid rgba(42, 30, 62, 0.15);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 500px) {
+  .certs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-name {
+    font-size: 0.95rem;
+  }
 }

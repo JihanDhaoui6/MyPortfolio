@@ -1,84 +1,232 @@
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+/* =================================================== */
+/*       COMPÉTENCES TECHNIQUES — LILAC DREAM          */
+/* =================================================== */
+
+/* ===== Header ===== */
+.skills-header {
+  margin-bottom: 1.5rem;
 }
 
-.skill-card {
-  padding: 1.6rem;
-  border-radius: 18px;
-  border: 2px solid;
-  transition: var(--transition-bounce);
-  background: var(--clr-lilac-surface);
-}
-
-.skill-card:nth-child(1) {
-  background: linear-gradient(135deg, rgba(167, 139, 200, 0.15), rgba(201, 182, 224, 0.08));
-  border-color: var(--clr-lilac);
-}
-.skill-card:nth-child(2) {
-  background: linear-gradient(135deg, rgba(201, 182, 224, 0.2), rgba(232, 184, 204, 0.08));
-  border-color: var(--clr-lavender);
-}
-.skill-card:nth-child(3) {
-  background: linear-gradient(135deg, rgba(232, 184, 204, 0.2), rgba(245, 208, 197, 0.08));
-  border-color: var(--clr-blush);
-}
-.skill-card:nth-child(4) {
-  background: linear-gradient(135deg, rgba(200, 224, 213, 0.25), rgba(201, 182, 224, 0.08));
-  border-color: var(--clr-mint);
-}
-.skill-card:nth-child(5) {
-  background: linear-gradient(135deg, rgba(245, 208, 197, 0.2), rgba(232, 184, 204, 0.08));
-  border-color: var(--clr-peach);
-}
-.skill-card:nth-child(6) {
-  background: linear-gradient(135deg, rgba(167, 139, 200, 0.15), rgba(200, 224, 213, 0.1));
-  border-color: var(--clr-lilac);
-}
-
-.skill-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: var(--shadow-hover);
-}
-
-.skill-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.skill-icon { font-size: 1.8rem; }
-
-.skill-header h3 {
-  font-size: 1.05rem;
+.skills-header .section-subtitle strong {
+  color: var(--clr-lilac-deep);
   font-weight: 800;
-  color: var(--clr-text);
 }
 
-.skill-list {
-  list-style: none;
+/* =================================================== */
+/*                    FILTRES                          */
+/* =================================================== */
+.skills-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed rgba(167, 139, 200, 0.25);
 }
 
-.skill-list li {
-  font-size: 0.78rem;
-  padding: 0.4rem 0.85rem;
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--clr-lilac-surface);
   border: 1.5px solid rgba(167, 139, 200, 0.3);
   color: var(--clr-text-soft);
   font-family: var(--font-code);
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
   transition: var(--transition-bounce);
 }
 
-.skill-list li:hover {
-  background: var(--clr-lilac);
-  color: #ffffff;
+.filter-btn:hover {
+  background: rgba(167, 139, 200, 0.15);
   border-color: var(--clr-lilac);
+  color: var(--clr-lilac-deep);
   transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--clr-lilac) 0%, var(--clr-lilac-deep) 100%);
+  border-color: var(--clr-lilac-deep);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(167, 139, 200, 0.4);
+}
+
+.filter-icon { font-size: 0.95rem; }
+
+/* =================================================== */
+/*                CATÉGORIES                           */
+/* =================================================== */
+.skills-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1.2rem;
+}
+
+.skill-category {
+  padding: 1.4rem 1.5rem;
+  border-radius: 16px;
+  background: var(--clr-lilac-surface);
+  border: 1.5px solid rgba(167, 139, 200, 0.2);
+  border-left: 5px solid var(--accent, var(--clr-lilac));
+  box-shadow: 0 6px 20px rgba(167, 139, 200, 0.08);
+  transition: var(--transition-bounce);
+}
+
+.skill-category:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(167, 139, 200, 0.18);
+}
+
+/* ===== Header de catégorie ===== */
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed rgba(167, 139, 200, 0.2);
+}
+
+.category-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.category-icon { font-size: 1.4rem; }
+
+.category-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--clr-text);
+  letter-spacing: -0.01em;
+}
+
+.category-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  background: var(--accent, var(--clr-lilac));
+  color: #ffffff;
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(167, 139, 200, 0.3);
+}
+
+/* =================================================== */
+/*           GRILLE DE COMPÉTENCES (chips)             */
+/* =================================================== */
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-chip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1.5px solid rgba(167, 139, 200, 0.18);
+  transition: var(--transition-bounce);
+  cursor: default;
+}
+
+.skill-chip:hover {
+  background: #ffffff;
+  border-color: var(--accent, var(--clr-lilac));
+  transform: translateX(4px);
+  box-shadow: 0 6px 16px rgba(167, 139, 200, 0.18);
+}
+
+.skill-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.skill-name {
+  font-size: 0.83rem;
+  color: var(--clr-text);
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== Niveau en dots ===== */
+.skill-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(167, 139, 200, 0.2);
+  transition: var(--transition);
+}
+
+.dot.filled {
+  background: var(--accent, var(--clr-lilac));
+  box-shadow: 0 0 6px var(--accent, var(--clr-lilac));
+}
+
+.skill-chip:hover .dot.filled {
+  transform: scale(1.15);
+}
+
+/* =================================================== */
+/*                    RESPONSIVE                       */
+/* =================================================== */
+
+@media (max-width: 800px) {
+  .skills-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-btn {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .filter-label {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .skill-name {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .skill-chip {
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem;
+  }
+
+  .skill-level {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    margin-top: 0.2rem;
+  }
 }

@@ -1,13 +1,24 @@
 <section id="activity">
   <div class="container">
-    <h2 class="section-title">Activity</h2>
+    <h2 class="section-title">Activité</h2>
     <p class="section-subtitle">
-      Mes derniers pushs, posts et articles — en direct de mon univers tech.
+      Mes dernières actions sur <strong>GitHub</strong>, <strong>LinkedIn</strong>
+      et <strong>Medium</strong> — en direct.
     </p>
 
-    <p *ngIf="loading" class="activity-loading">Chargement…</p>
+    <!-- Loading -->
+    <div *ngIf="loading" class="activity-loading">
+      <span class="loader"></span>
+      Chargement de l’activité…
+    </div>
 
-    <div class="activity-grid" *ngIf="!loading">
+    <!-- Erreur -->
+    <div *ngIf="error && !loading" class="activity-error">
+      {{ error }}
+    </div>
+
+    <!-- Grille -->
+    <div class="activity-grid" *ngIf="!loading && activities.length">
       <a
         *ngFor="let item of activities"
         [href]="item.url"
@@ -15,14 +26,28 @@
         rel="noopener"
         class="activity-card"
         [style.--card-accent]="item.color">
+
         <div class="activity-header">
           <span class="activity-icon">{{ item.icon }}</span>
           <span class="activity-type">{{ item.type }}</span>
         </div>
-        <h3>{{ item.title }}</h3>
-        <p *ngIf="item.description">{{ item.description }}</p>
-        <time>{{ item.date | date: 'dd MMM yyyy' }}</time>
+
+        <h3 class="activity-title">{{ item.title }}</h3>
+
+        <p class="activity-desc" *ngIf="item.description">
+          {{ item.description }}
+        </p>
+
+        <div class="activity-time">
+          <span class="pulse-dot"></span>
+          <span class="time-label">{{ item.timeAgo }}</span>
+        </div>
       </a>
+    </div>
+
+    <!-- Vide -->
+    <div *ngIf="!loading && !activities.length" class="activity-error">
+      Aucune activité disponible pour le moment.
     </div>
   </div>
 </section>

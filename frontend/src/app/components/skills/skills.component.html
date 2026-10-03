@@ -1,24 +1,64 @@
 <section id="skills">
   <div class="container">
-    <h2 class="section-title">Skills</h2>
-    <p class="section-subtitle">
-      Les technologies que j’utilise au quotidien pour construire, sécuriser
-      et automatiser.
-    </p>
 
-    <div class="skills-grid">
-      <div
-        *ngFor="let cat of categories"
-        class="skill-card card"
-        [style.--card-accent]="cat.color">
-        <div class="skill-header">
-          <span class="skill-icon">{{ cat.icon }}</span>
-          <h3>{{ cat.title }}</h3>
-        </div>
-        <ul class="skill-list">
-          <li *ngFor="let item of cat.items">{{ item }}</li>
-        </ul>
+    <!-- ===== HEADER ===== -->
+    <div class="skills-header">
+      <div>
+        <h2 class="section-title">Compétences techniques</h2>
+        <p class="section-subtitle">
+          <strong>{{ totalSkills }}</strong> technologies réparties en
+          <strong>{{ categories.length }}</strong> catégories — du cloud à l'IA,
+          en passant par l'infrastructure et le code.
+        </p>
       </div>
     </div>
+
+    <!-- ===== FILTRES ===== -->
+    <div class="skills-filters">
+      <button
+        *ngFor="let f of filters"
+        class="filter-btn"
+        [class.active]="activeFilter === f.key"
+        (click)="selectFilter(f.key)">
+        <span class="filter-icon">{{ f.icon }}</span>
+        <span class="filter-label">{{ f.label }}</span>
+      </button>
+    </div>
+
+    <!-- ===== CATÉGORIES ===== -->
+    <div class="skills-categories">
+      <div
+        *ngFor="let cat of visibleCategories"
+        class="skill-category"
+        [style.--accent]="cat.color">
+
+        <!-- En-tête catégorie -->
+        <div class="category-header">
+          <div class="category-title-group">
+            <span class="category-icon">{{ cat.icon }}</span>
+            <h3 class="category-title">{{ cat.title }}</h3>
+          </div>
+          <span class="category-count">{{ cat.items.length }}</span>
+        </div>
+
+        <!-- Grille de compétences -->
+        <div class="skills-grid">
+          <div *ngFor="let skill of cat.items" class="skill-chip">
+            <span class="skill-icon">{{ skill.icon }}</span>
+            <span class="skill-name">{{ skill.name }}</span>
+
+            <!-- Niveau en dots -->
+            <span class="skill-level" [title]="levelLabel(skill.level)">
+              <span
+                *ngFor="let d of levelDots(skill.level)"
+                class="dot"
+                [class.filled]="d < skill.level">
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

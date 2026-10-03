@@ -1,8 +1,8 @@
 <section id="experience">
   <div class="container">
-    <h2 class="section-title">Experience</h2>
+    <h2 class="section-title">Expérience</h2>
     <p class="section-subtitle">
-      Mon parcours professionnel entre dev, cloud et sécurité.
+      Mon parcours professionnel entre infrastructure, cloud, DevOps et sécurité.
     </p>
 
     <div class="timeline">
@@ -11,12 +11,22 @@
         class="timeline-item"
         [class.left]="i % 2 === 0"
         [class.right]="i % 2 !== 0">
-        <div class="timeline-dot" [style.background]="e.color"></div>
-        <div class="timeline-content card">
+
+        <div class="timeline-dot" [style.background]="e.color">
+          <span class="dot-icon">{{ e.icon }}</span>
+        </div>
+
+        <div class="timeline-content card" [style.--accent]="e.color">
           <span class="timeline-period">{{ e.period }}</span>
           <h3>{{ e.role }}</h3>
-          <p class="timeline-company">{{ e.company }}</p>
+          <p class="timeline-company">
+            {{ e.company }} <span class="company-loc">· {{ e.location }}</span>
+          </p>
           <p class="timeline-desc">{{ e.description }}</p>
+
+          <ul class="timeline-tasks" *ngIf="e.tasks?.length">
+            <li *ngFor="let t of e.tasks">{{ t }}</li>
+          </ul>
         </div>
       </div>
     </div>

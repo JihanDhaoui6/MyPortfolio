@@ -1,29 +1,128 @@
 <section id="projects">
   <div class="container">
-    <h2 class="section-title">Projects</h2>
+    <h2 class="section-title">Projets</h2>
     <p class="section-subtitle">
-      Une sélection de projets qui mélangent infra, code et automatisation.
+      Une sélection de projets qui mélangent cloud, infrastructure, IA et développement full-stack.
     </p>
 
-    <div class="projects-grid">
-      <article
-        *ngFor="let p of projects"
-        class="project-card card"
-        [style.--card-accent]="p.color">
-        <h3>{{ p.title }}</h3>
-        <p>{{ p.description }}</p>
-        <ul class="project-tech">
-          <li *ngFor="let t of p.tech">{{ t }}</li>
-        </ul>
-        <div class="project-links">
-          <a *ngIf="p.github" [href]="p.github" target="_blank" class="btn btn-outline">
-            GitHub
-          </a>
-          <a *ngIf="p.demo" [href]="p.demo" target="_blank" class="btn btn-primary">
-            Demo
-          </a>
+    <!-- ===== TIMELINE ===== -->
+    <div class="projects-timeline">
+      <div class="timeline-axis"></div>
+
+      <div
+        *ngFor="let p of projects; let i = index"
+        class="timeline-item"
+        [class.left]="i % 2 === 0"
+        [class.right]="i % 2 !== 0"
+        [style.--accent]="p.color">
+
+        <!-- Point sur la ligne -->
+        <div class="timeline-dot">
+          <span class="dot-icon">{{ p.icon }}</span>
         </div>
-      </article>
+
+        <!-- Carte projet -->
+        <article class="project-card">
+
+          <!-- Header : date + titre -->
+          <div class="project-header">
+            <span class="project-date">{{ p.date }}</span>
+          </div>
+
+          <h3 class="project-title">{{ p.title }}</h3>
+          <p class="project-desc">{{ p.description }}</p>
+
+          <!-- Stack -->
+          <ul class="project-tech">
+            <li *ngFor="let t of p.tech">{{ t }}</li>
+          </ul>
+
+          <!-- Galerie d'images -->
+          <div class="project-gallery" *ngIf="p.images?.length">
+            <div
+              *ngFor="let img of p.images; let idx = index"
+              class="gallery-thumb"
+              (click)="openLightbox(p, idx)">
+              <img [src]="img" [alt]="p.title + ' - ' + (idx + 1)" loading="lazy">
+              <div class="thumb-overlay">
+                <span class="zoom-icon">🔍</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Liens -->
+          <div class="project-links">
+            <a *ngIf="p.github" [href]="p.github" target="_blank" rel="noopener" class="btn btn-outline">
+              🐙 GitHub
+            </a>
+            <a *ngIf="p.demo" [href]="p.demo" target="_blank" rel="noopener" class="btn btn-primary">
+              🚀 Demo
+            </a>
+          </div>
+
+        </article>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- =================================================== -->
+<!--                  LIGHTBOX / MODAL                    -->
+<!-- =================================================== -->
+<div
+  *ngIf="lightboxProject as lp"
+  class="lightbox"
+  (click)="closeLightbox()"
+  (keydown)="onKeyDown($event)"
+  tabindex="0">
+
+  <div class="lightbox-content" (click)="$event.stopPropagation()">
+
+    <!-- Bouton fermer -->
+    <button class="lightbox-close" (click)="closeLightbox()" aria-label="Fermer">✕</button>
+
+    <!-- Image principale -->
+    <div class="lightbox-stage">
+      <button
+        *ngIf="lp.images.length > 1"
+        class="lightbox-nav prev"
+        (click)="prevImage($event)"
+        aria-label="Image précédente">
+        ‹
+      </button>
+
+      <img
+        [src]="lp.images[lightboxIndex]"
+        [alt]="lp.title"
+        class="lightbox-image">
+
+      <button
+        *ngIf="lp.images.length > 1"
+        class="lightbox-nav next"
+        (click)="nextImage($event)"
+        aria-label="Image suivante">
+        ›
+      </button>
+    </div>
+
+    <!-- Titre + compteur -->
+    <div class="lightbox-caption">
+      <h3>{{ lp.title }}</h3>
+      <span class="lightbox-counter">
+        {{ lightboxIndex + 1 }} / {{ lp.images.length }}
+      </span>
+    </div>
+
+    <!-- Miniatures cliquables -->
+    <div class="lightbox-thumbs" *ngIf="lp.images.length > 1">
+      <button
+        *ngFor="let img of lp.images; let idx = index"
+        class="lightbox-thumb"
+        [class.active]="idx === lightboxIndex"
+        (click)="goToImage(idx, $event)">
+        <img [src]="img" [alt]="'thumb ' + (idx + 1)">
+      </button>
+    </div>
+
+  </div>
+</div>
