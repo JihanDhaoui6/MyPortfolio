@@ -7,16 +7,15 @@ import { CareerEntry } from '../../shared/models/career/career.module';
   styleUrls: ['./career-line.component.css']
 })
 export class CareerLineComponent implements OnInit {
-  /** Bornes de la timeline */
   readonly startYear = 2021;
   readonly endYear = 2026;
 
-  /** Années affichées sous la timeline */
   years: number[] = [];
 
-  /** Toutes les entrées */
   entries: CareerEntry[] = [
     // ===== WORK =====
+
+    // 🔹 Ingénieure Infrastructure & DevOps — Freelance
     {
       id: 1,
       type: 'work',
@@ -32,6 +31,8 @@ export class CareerLineComponent implements OnInit {
         'Observabilité, stockage sécurisé et tests de performance'
       ]
     },
+
+    // 🔹 Stagiaire Observatrice — CRC Bouchemma
     {
       id: 2,
       type: 'work',
@@ -49,9 +50,46 @@ export class CareerLineComponent implements OnInit {
       ]
     },
 
-    // ===== STUDY =====
+    // 🔹 Stage PFE — Faculté des Sciences de Monastir
     {
       id: 3,
+      type: 'work',
+      title: 'Stage PFE — Développeuse Full-Stack MERN',
+      organization: 'Faculté des Sciences de Monastir',
+      location: 'Monastir',
+      startDate: '2024-01',
+      endDate: '2024-06',
+      color: '#a78bc8',
+      description: [
+        'Conception et développement d’une plateforme d’échange et de vente de livres',
+        'Architecture multi-utilisateurs (étudiants, vendeurs, admin)',
+        'Messagerie temps réel et tracking de commandes via WebSocket',
+        'Stack : MongoDB · Express · React · Node.js (MERN) · Socket.IO'
+      ]
+    },
+
+    // 🔹 Stage d'initialisation — ESSAT Gabès
+    {
+      id: 4,
+      type: 'work',
+      title: 'Stage d’initialisation',
+      organization: 'ESSAT Gabès',
+      location: 'Gabès',
+      startDate: '2023-06',
+      endDate: '2023-06',
+      color: '#c8e0d5',
+      description: [
+        'Premier contact avec le monde professionnel',
+        'Découverte des métiers de l’informatique et des infrastructures',
+        'Université privée ESSAT — Gabès'
+      ]
+    },
+
+    // ===== STUDY =====
+
+    // 🔹 Cycle d'ingénieur — ESPRIT
+    {
+      id: 5,
       type: 'study',
       title: 'Cycle d’ingénieur — Cloud Computing (2ᵉ année)',
       organization: 'ESPRIT',
@@ -64,8 +102,10 @@ export class CareerLineComponent implements OnInit {
         'Spécialisation Cloud Computing'
       ]
     },
+
+    // 🔹 Licence Informatique — FSM
     {
-      id: 4,
+      id: 6,
       type: 'study',
       title: 'Licence Informatique — Génie Logiciel',
       organization: 'Faculté des Sciences de Monastir',
@@ -80,24 +120,18 @@ export class CareerLineComponent implements OnInit {
     }
   ];
 
-  /** Regroupés par type pour l'affichage */
   workEntries: CareerEntry[] = [];
   studyEntries: CareerEntry[] = [];
-
-  /** Info-bulle active */
   activeEntry: CareerEntry | null = null;
   tooltipX = 0;
 
   ngOnInit(): void {
-    // Années affichées
     for (let y = this.startYear; y <= this.endYear; y++) {
       this.years.push(y);
     }
 
-    // Calcul position + largeur de chaque barre
     this.entries.forEach((e) => this.computePosition(e));
 
-    // Séparation work / study
     this.workEntries = this.entries
       .filter((e) => e.type === 'work')
       .sort((a, b) => a.left! - b.left!);
@@ -107,10 +141,8 @@ export class CareerLineComponent implements OnInit {
       .sort((a, b) => a.left! - b.left!);
   }
 
-  /** Convertit startDate/endDate en % sur la ligne */
   private computePosition(entry: CareerEntry): void {
-    const totalMonths =
-      (this.endYear - this.startYear) * 12 + 12; // 2021 → 2026 inclus
+    const totalMonths = (this.endYear - this.startYear) * 12 + 12;
 
     const [sy, sm] = entry.startDate.split('-').map(Number);
     const startMonths = (sy - this.startYear) * 12 + (sm - 1);
@@ -123,21 +155,18 @@ export class CareerLineComponent implements OnInit {
       endMonths = (ey - this.startYear) * 12 + (em - 1);
     }
 
-    // Au moins 2 mois de largeur pour la visibilité
     const widthMonths = Math.max(endMonths - startMonths + 1, 2);
 
     entry.left = (startMonths / totalMonths) * 100;
     entry.width = (widthMonths / totalMonths) * 100;
   }
 
-  /** Année en % pour positionner les labels sous la timeline */
   yearPosition(year: number): number {
     const totalMonths = (this.endYear - this.startYear) * 12 + 12;
     const months = (year - this.startYear) * 12;
     return (months / totalMonths) * 100;
   }
 
-  /** Affiche le tooltip au survol */
   showTooltip(entry: CareerEntry): void {
     this.activeEntry = entry;
   }

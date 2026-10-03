@@ -1,165 +1,252 @@
-/* ============ SECTION ============ */
+/* =================================================== */
+/*         CAREER LINE — LILAC DREAM (V2)              */
+/* =================================================== */
+
 #career {
   min-height: auto;
-  padding: 80px 5%;
+  padding: 90px 5%;
 }
 
-/* ============ HEADER "CAREER LINE" ============ */
+/* =================================================== */
+/*                    HEADER                           */
+/* =================================================== */
 .career-header {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  max-width: 1100px;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.career-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: var(--clr-text-soft);
-  text-transform: uppercase;
+.career-header-left {
+  flex-shrink: 0;
+}
+
+.career-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(167, 139, 200, 0.15);
+  border: 1.5px solid var(--clr-lilac);
+  color: var(--clr-lilac-deep);
   font-family: var(--font-code);
-  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.7rem;
+}
+
+.career-title {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 800;
+  color: var(--clr-text);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 0.3rem;
+}
+
+.career-subtitle {
+  font-size: 0.9rem;
+  color: var(--clr-muted);
+  max-width: 480px;
 }
 
 .career-rule {
   flex: 1;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(90deg,
-    rgba(143, 160, 216, 0.5) 0%,
-    rgba(143, 160, 216, 0.05) 100%);
+    var(--clr-lilac) 0%,
+    rgba(167, 139, 200, 0.15) 60%,
+    transparent 100%);
+  border-radius: 2px;
+  margin-bottom: 1.2rem;
 }
 
-/* ============ CARTE PRINCIPALE ============ */
+/* =================================================== */
+/*                 CARTE PRINCIPALE                    */
+/* =================================================== */
 .career-card {
   position: relative;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  background: rgba(11, 8, 41, 0.6);
-  border: 1.5px solid rgba(143, 160, 216, 0.2);
-  border-radius: 16px;
-  padding: 3rem 2rem 2rem;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--clr-lilac-surface);
+  border: 1.5px solid rgba(167, 139, 200, 0.3);
+  border-radius: 20px;
+  padding: 3rem 2.5rem 2rem;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    0 12px 40px rgba(167, 139, 200, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   overflow: hidden;
 }
 
-/* ============ MARQUEUR NOW ============ */
+/* Effet de grille douce en fond */
+.career-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(167, 139, 200, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 139, 200, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* =================================================== */
+/*                 MARQUEUR NOW                        */
+/* =================================================== */
 .now-marker {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.2rem;
+  right: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   z-index: 5;
 }
 
+.now-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7ab648;
+  box-shadow: 0 0 0 4px rgba(122, 182, 72, 0.25);
+  animation: nowPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes nowPulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%      { transform: scale(1.3); opacity: 0.6; }
+}
+
 .now-label {
   font-family: var(--font-code);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 2px;
-  color: var(--clr-orange);
+  color: var(--clr-lilac-deep);
   font-weight: 800;
 }
 
 .now-line {
-  display: block;
-  width: 1px;
-  height: 220px;
-  background: linear-gradient(180deg,
-    var(--clr-orange) 0%,
-    rgba(255, 107, 0, 0.05) 100%);
   position: absolute;
-  top: 1.2rem;
-  right: 0.2rem;
-  box-shadow: 0 0 12px rgba(255, 107, 0, 0.5);
+  top: 1.4rem;
+  right: -0.6rem;
+  display: block;
+  width: 1.5px;
+  height: 240px;
+  background: linear-gradient(180deg,
+    var(--clr-lilac) 0%,
+    rgba(167, 139, 200, 0.05) 100%);
+  box-shadow: 0 0 10px rgba(167, 139, 200, 0.4);
 }
 
-/* ============ LIGNES ============ */
+/* =================================================== */
+/*                    LIGNES                           */
+/* =================================================== */
 .career-row {
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 110px 1fr;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
+  gap: 1.2rem;
+  margin-bottom: 1.3rem;
   position: relative;
   z-index: 2;
 }
 
 .row-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-code);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--clr-text-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--clr-lilac-deep);
   text-transform: uppercase;
+}
+
+.row-icon {
+  font-size: 1rem;
 }
 
 .row-track {
   position: relative;
-  height: 44px;
-  background: rgba(143, 160, 216, 0.05);
-  border-radius: 8px;
-  border: 1px solid rgba(143, 160, 216, 0.1);
-  overflow: visible;
+  height: 50px;
+  background: rgba(167, 139, 200, 0.06);
+  border-radius: 10px;
+  border: 1px solid rgba(167, 139, 200, 0.12);
 }
 
-/* ============ BARRES ============ */
+/* =================================================== */
+/*                    BARRES                           */
+/* =================================================== */
 .career-bar {
   position: absolute;
-  top: 4px;
-  bottom: 4px;
+  top: 5px;
+  bottom: 5px;
   border-radius: 8px;
-  border: 1.5px solid;
   cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.28s ease,
+              filter 0.28s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.6rem;
-  min-width: 40px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  padding: 0 0.7rem;
+  min-width: 44px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 3px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Effet de brillance */
+.career-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 50%;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    transparent 100%);
+  pointer-events: none;
+  border-radius: 8px 8px 0 0;
 }
 
 .career-bar:hover {
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-3px) scale(1.03);
+  filter: brightness(1.08);
   box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.4),
-    0 0 20px currentColor;
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 10px 24px rgba(0, 0, 0, 0.15),
+    0 0 24px rgba(167, 139, 200, 0.35);
   z-index: 3;
 }
 
 .bar-label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #0b0829;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #2a1e3e;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: var(--font-code);
-  letter-spacing: 0.5px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 1;
 }
 
-/* Certaines barres ont besoin d'un label clair (fond sombre) */
-.career-bar[style*="#8fa0d8"] .bar-label,
-.career-bar[style*="#1b3451"] .bar-label {
-  color: #0b0829;
-}
-
-/* ============ AXE DES ANNÉES ============ */
+/* =================================================== */
+/*              AXE DES ANNÉES                         */
+/* =================================================== */
 .career-years {
   display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 1rem;
+  grid-template-columns: 110px 1fr;
+  gap: 1.2rem;
   margin-top: 1rem;
   position: relative;
   z-index: 2;
@@ -167,7 +254,7 @@
 
 .years-track {
   position: relative;
-  height: 24px;
+  height: 28px;
 }
 
 .year-label {
@@ -175,21 +262,33 @@
   transform: translateX(-50%);
   font-family: var(--font-code);
   font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--clr-muted-soft);
-  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--clr-lilac-deep);
+  letter-spacing: 0.5px;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  background: rgba(167, 139, 200, 0.1);
+  border: 1px solid rgba(167, 139, 200, 0.15);
+  transition: var(--transition);
 }
 
-/* ============ GRILLE VERTICALE ============ */
+.year-label:hover {
+  background: var(--clr-lilac);
+  color: #ffffff;
+  border-color: var(--clr-lilac);
+}
+
+/* =================================================== */
+/*              GRILLE VERTICALE                       */
+/* =================================================== */
 .career-verticals {
   position: absolute;
-  top: 3rem;
+  top: 4rem;
   bottom: 3.5rem;
-  left: 90px;
-  right: 2rem;
+  left: 130px;
+  right: 2.5rem;
   pointer-events: none;
   z-index: 1;
-  display: flex;
 }
 
 .career-verticals span {
@@ -198,65 +297,127 @@
   bottom: 0;
   width: 1px;
   background: linear-gradient(180deg,
-    rgba(143, 160, 216, 0) 0%,
-    rgba(143, 160, 216, 0.08) 20%,
-    rgba(143, 160, 216, 0.08) 80%,
-    rgba(143, 160, 216, 0) 100%);
+    rgba(167, 139, 200, 0) 0%,
+    rgba(167, 139, 200, 0.12) 20%,
+    rgba(167, 139, 200, 0.12) 80%,
+    rgba(167, 139, 200, 0) 100%);
 }
 
-/* ============ TOOLTIP ============ */
+/* =================================================== */
+/*                    TOOLTIP                          */
+/* =================================================== */
 .career-tooltip {
-  max-width: 700px;
-  margin: 1.5rem auto 0;
-  padding: 1.2rem 1.5rem;
-  background: rgba(11, 8, 41, 0.95);
-  border: 1.5px solid var(--clr-orange);
-  border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  animation: fadeIn 0.2s ease;
+  max-width: 780px;
+  margin: 1.75rem auto 0;
+  padding: 1.4rem 1.6rem;
+  background: var(--clr-lilac-surface);
+  border: 1.5px solid var(--accent, var(--clr-lilac));
+  border-left: 5px solid var(--accent, var(--clr-lilac));
+  border-radius: 14px;
+  box-shadow: 0 16px 44px rgba(167, 139, 200, 0.25);
+  animation: tooltipSlide 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes tooltipSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tooltip-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.tooltip-title-group {
+  flex: 1;
+  min-width: 0;
 }
 
 .career-tooltip h4 {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--clr-text);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
 }
 
 .tooltip-meta {
-  font-size: 0.8rem;
-  color: var(--clr-orange);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--clr-muted);
   font-family: var(--font-code);
-  margin-bottom: 0.6rem;
 }
 
-.career-tooltip ul {
+.tooltip-dot {
+  color: var(--clr-lilac);
+  font-weight: 900;
+}
+
+.tooltip-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.career-tooltip li {
-  font-size: 0.85rem;
+.tooltip-list li {
+  font-size: 0.88rem;
   color: var(--clr-text-soft);
-  padding-left: 1rem;
+  padding-left: 1.3rem;
   position: relative;
-  margin-bottom: 0.25rem;
+  line-height: 1.55;
 }
 
-.career-tooltip li::before {
+.tooltip-list li::before {
   content: '▸';
   position: absolute;
   left: 0;
-  color: var(--clr-orange);
-  font-weight: 700;
+  color: var(--accent, var(--clr-lilac));
+  font-weight: 900;
+  font-size: 0.9rem;
 }
 
-/* ============ RESPONSIVE ============ */
+/* =================================================== */
+/*                    RESPONSIVE                       */
+/* =================================================== */
+
+@media (max-width: 900px) {
+  .career-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .career-rule {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 800px) {
   .career-card {
     padding: 2rem 1rem 1.5rem;
@@ -264,25 +425,53 @@
 
   .career-row,
   .career-years {
-    grid-template-columns: 60px 1fr;
-    gap: 0.5rem;
+    grid-template-columns: 80px 1fr;
+    gap: 0.6rem;
   }
 
   .row-label {
-    font-size: 0.65rem;
-    letter-spacing: 2px;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  .row-icon {
+    font-size: 0.9rem;
   }
 
   .career-verticals {
-    left: 60px;
+    left: 95px;
     right: 1rem;
   }
 
   .bar-label {
-    font-size: 0.6rem;
+    font-size: 0.62rem;
   }
 
   .now-line {
-    height: 160px;
+    height: 180px;
+  }
+
+  .tooltip-header {
+    gap: 0.75rem;
+  }
+
+  .tooltip-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .career-tooltip {
+    padding: 1.1rem;
+  }
+
+  .career-tooltip h4 {
+    font-size: 0.95rem;
+  }
+
+  .tooltip-list li {
+    font-size: 0.82rem;
   }
 }

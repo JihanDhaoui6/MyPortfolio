@@ -1,24 +1,34 @@
 <section id="career">
   <div class="container">
 
-    <!-- Titre de section type "CAREER LINE" -->
+    <!-- ===== HEADER ===== -->
     <div class="career-header">
-      <h2 class="career-title">CAREER LINE</h2>
+      <div class="career-header-left">
+        <span class="career-badge">📅 Timeline</span>
+        <h2 class="career-title">Parcours professionnel</h2>
+        <p class="career-subtitle">
+          Étapes clés de ma formation et de mon expérience.
+        </p>
+      </div>
       <div class="career-rule"></div>
     </div>
 
-    <!-- Carte principale -->
+    <!-- ===== CARTE PRINCIPALE ===== -->
     <div class="career-card">
 
-      <!-- Marqueur NOW à droite -->
+      <!-- Marqueur NOW -->
       <div class="now-marker">
-        <span class="now-label">NOW</span>
+        <span class="now-pulse"></span>
+        <span class="now-label">MAINTENANT</span>
         <span class="now-line"></span>
       </div>
 
-      <!-- Ligne WORK -->
+      <!-- ===== Ligne TRAVAIL ===== -->
       <div class="career-row">
-        <div class="row-label">WORK</div>
+        <div class="row-label">
+          <span class="row-icon">💼</span>
+          <span class="row-text">Travail</span>
+        </div>
         <div class="row-track">
           <div
             *ngFor="let e of workEntries"
@@ -27,6 +37,7 @@
             [style.width.%]="e.width"
             [style.background]="e.color"
             [style.borderColor]="e.color"
+            [attr.data-org]="e.organization"
             (mouseenter)="showTooltip(e)"
             (mouseleave)="hideTooltip()">
             <span class="bar-label">{{ e.organization }}</span>
@@ -34,9 +45,12 @@
         </div>
       </div>
 
-      <!-- Ligne STUDY -->
+      <!-- ===== Ligne FORMATION ===== -->
       <div class="career-row">
-        <div class="row-label">STUDY</div>
+        <div class="row-label">
+          <span class="row-icon">🎓</span>
+          <span class="row-text">Formation</span>
+        </div>
         <div class="row-track">
           <div
             *ngFor="let e of studyEntries"
@@ -45,6 +59,7 @@
             [style.width.%]="e.width"
             [style.background]="e.color"
             [style.borderColor]="e.color"
+            [attr.data-org]="e.organization"
             (mouseenter)="showTooltip(e)"
             (mouseleave)="hideTooltip()">
             <span class="bar-label">{{ e.organization }}</span>
@@ -52,7 +67,7 @@
         </div>
       </div>
 
-      <!-- Axe des années -->
+      <!-- ===== Axe des années ===== -->
       <div class="career-years">
         <div class="row-label"></div>
         <div class="years-track">
@@ -65,24 +80,33 @@
         </div>
       </div>
 
-      <!-- Grille verticale décorative -->
+      <!-- ===== Grille verticale ===== -->
       <div class="career-verticals">
         <span *ngFor="let y of years" [style.left.%]="yearPosition(y)"></span>
       </div>
 
     </div>
 
-    <!-- Tooltip (détails au survol) -->
+    <!-- ===== Tooltip ===== -->
     <div
       class="career-tooltip"
-      *ngIf="activeEntry"
-      [style.borderColor]="activeEntry.color">
-      <h4>{{ activeEntry.title }}</h4>
-      <p class="tooltip-meta">
-        {{ activeEntry.organization }} · {{ activeEntry.location }}
-      </p>
-      <ul *ngIf="activeEntry.description?.length">
-        <li *ngFor="let d of activeEntry.description">{{ d }}</li>
+      *ngIf="activeEntry as entry"
+      [style.--accent]="entry.color">
+      <div class="tooltip-header">
+        <div class="tooltip-badge" [style.background]="entry.color">
+          {{ entry.type === 'work' ? '💼' : '🎓' }}
+        </div>
+        <div class="tooltip-title-group">
+          <h4>{{ entry.title }}</h4>
+          <p class="tooltip-meta">
+            <span>{{ entry.organization }}</span>
+            <span class="tooltip-dot">·</span>
+            <span>{{ entry.location }}</span>
+          </p>
+        </div>
+      </div>
+      <ul *ngIf="entry.description?.length" class="tooltip-list">
+        <li *ngFor="let d of entry.description">{{ d }}</li>
       </ul>
     </div>
 
