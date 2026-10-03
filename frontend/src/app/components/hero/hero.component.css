@@ -7,39 +7,42 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 5% 80px;
+  padding: 120px 3% 80px;
   overflow: hidden;
 }
 
-/* Terminal plus large → colonne droite plus grande */
+/* =================================================== */
+/*   GRILLE : Photo étroite + Terminal très large      */
+/* =================================================== */
 .hero-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.5fr;     /* Photo colonne étroite + terminal large */
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: 0.6fr 1.9fr;
+  gap: 2rem;
+  align-items: start;               /* ← La grille n'étire plus les colonnes */
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
+/* ===== COLONNE GAUCHE : PHOTO + INFOS ===== */
 .hero-left {
   display: flex;
   flex-direction: column;
-  align-items: center;                     /* ← Photo centrée au-dessus */
+  align-items: center;
   text-align: center;
   gap: 1.2rem;
+  align-self: start;                /* ← Colle la colonne en haut de la grille */
+  padding-top: 2rem;                /* ← Petit espace en haut */
 }
 
-/* ===== PHOTO AU-DESSUS DU TEXTE ===== */
 .hero-photo-wrapper {
   position: relative;
   width: 170px;
   height: 170px;
   flex-shrink: 0;
-  animation: floatPhoto 8s ease-in-out infinite;
+  /* ← plus d'animation : la photo reste statique */
 }
 
-@keyframes floatPhoto {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
 
 .hero-photo-ring {
   position: absolute;
@@ -162,16 +165,10 @@
   50%      { transform: scale(1.3); opacity: 0.6; }
 }
 
-/* ===== TAGS (6 variantes colorées) ===== */
-
-
-
-
-
 /* ===== TAGS — 2 lignes × 3 colonnes ===== */
 .hero-tags {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);   /* 3 colonnes fixes */
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.6rem;
   margin-top: 0.8rem;
   width: 100%;
@@ -197,7 +194,6 @@
   gap: 0.3rem;
 }
 
-/* ===== Couleurs (identiques à avant) ===== */
 .hero-tags span:nth-child(1) {
   background: rgba(167, 139, 200, 0.15);
   border-color: var(--clr-lilac);
@@ -234,25 +230,6 @@
   box-shadow: 0 8px 20px rgba(167, 139, 200, 0.3);
 }
 
-/* ===== Responsive — 2 colonnes sur mobile ===== */
-@media (max-width: 700px) {
-  .hero-tags {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 420px;
-  }
-}
-
-@media (max-width: 420px) {
-  .hero-tags {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-tags span {
-    font-size: 0.7rem;
-    padding: 0.5rem 0.6rem;
-  }
-}
-
 /* ===== BOUTONS ===== */
 .hero-actions {
   display: flex;
@@ -262,22 +239,22 @@
   justify-content: center;
 }
 
-/* ===== DROITE : TERMINAL ===== */
+/* =================================================== */
+/*              COLONNE DROITE : TERMINAL              */
 .hero-right {
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  min-width: 0;
+  /* ← plus de height: 100% : le terminal choisit sa hauteur */
 }
-
 /* =================================================== */
 /*                    RESPONSIVE                       */
 /* =================================================== */
 
 @media (max-width: 1200px) {
   .hero-grid {
-    grid-template-columns: 0.95fr 1.4fr;
-    gap: 2rem;
+    grid-template-columns: 0.7fr 1.75fr;
+    gap: 1.5rem;
   }
 }
 
@@ -289,11 +266,20 @@
 
   .hero-photo-wrapper { width: 150px; height: 150px; }
   .hero-photo { width: 150px; height: 150px; }
+
+  .hero-right { height: auto; }
+}
+
+@media (max-width: 700px) {
+  .hero-tags {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 420px;
+  }
 }
 
 @media (max-width: 600px) {
   .hero {
-    padding: 100px 5% 60px;
+    padding: 100px 4% 60px;
   }
 
   .hero-photo-wrapper { width: 130px; height: 130px; }
@@ -303,11 +289,17 @@
 
   .hero-tags span {
     font-size: 0.7rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.45rem 0.7rem;
   }
 
   .hero-status {
     font-size: 0.75rem;
     padding: 0.5rem 0.9rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-tags {
+    grid-template-columns: 1fr;
   }
 }

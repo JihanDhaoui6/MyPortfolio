@@ -1,7 +1,20 @@
-/* ===== Le terminal devient plus large ===== */
-.terminal {
+/* ===== HOST du composant : prend toute la place disponible ===== */
+:host {
+  display: block;
   width: 100%;
-  max-width: 1200px;                       /* ← 1100px → 1200px */
+  height: 100%;
+  min-width: 0;
+}
+
+.terminal {
+  width: 90%;
+  max-width: 90%;
+  height: auto;                     /* ← Plus de height: 100% */
+  min-height: 520px;                /* ← Hauteur min fixe */
+  max-height: 620px;                /* ← Plafond raisonnable */
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
   background: rgba(62, 46, 82, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -15,7 +28,29 @@
   cursor: text;
   transition: var(--transition);
 }
+/* Corps du terminal : prend toute la hauteur restante */
+.terminal-body {
+  flex: 1;
+  padding: 1.8rem 2rem;
+  overflow-y: auto;
+  min-height: 0;
+  max-height: 100%;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #f5eef8;
+}
 
+/* ===== Corps du terminal : s'étire ===== */
+.terminal-body {
+  flex: 1;                         /* ← NOUVEAU : prend tout l'espace restant */
+  padding: 1.8rem 2rem;
+  max-height: none;                /* ← SUPPRIME la limite 520px */
+  min-height: 0;                   /* ← NOUVEAU */
+  overflow-y: auto;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #f5eef8;
+}
 .terminal:hover {
   border-color: var(--clr-blush);
   box-shadow:
@@ -48,15 +83,7 @@
 
 .terminal-spacer { width: 62px; }
 
-.terminal-body {
-  padding: 2rem 2.2rem;
-  max-height: 620px;
-  min-height: 500px;
-  overflow-y: auto;
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: #f5eef8;
-}
+
 
 .terminal-body::-webkit-scrollbar { width: 8px; }
 .terminal-body::-webkit-scrollbar-thumb {
@@ -141,3 +168,12 @@
   .terminal-line,
   .terminal-input { font-size: 0.88rem; }
 }
+
+
+
+
+/* Nouveau : type "info" (cyan) */
+.terminal-line.info .line-text { color: #67e8f9; }
+
+/* Nouveau : type "warn" (orange doux) */
+.terminal-line.warn .line-text { color: #fbbf24; }
