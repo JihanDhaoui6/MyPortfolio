@@ -31,4 +31,9 @@ export class ActivityComponent implements OnInit {
       }
     });
   }
+
+  onLogoError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.style.display = 'none';
+  }
 }

@@ -8,34 +8,21 @@ import { ActivityItem } from '../models/activity.model';
 export class ActivityService {
   /** 👇 Tes vraies infos */
   private readonly GITHUB_USER = 'JihanDhaoui6';
-  private readonly LINKEDIN_URL = 'https://www.linkedin.com/in/jihan-dhaoui-15599b236/';
-  private readonly MEDIUM_USER = 'jihandhaoui65';
+  private readonly LINKEDIN_URL =
+    'https://www.linkedin.com/in/jihan-dhaoui-15599b236/';
 
   constructor(private http: HttpClient) {}
 
   // =====================================================
-  //                GITHUB — API PUBLIQUE (temps réel)
-  // =====================================================
-   // =====================================================
-  //                GITHUB — API PUBLIQUE + FALLBACK
-  // =====================================================
-   // =====================================================
-  //                GITHUB — COMMITS RÉCENTS
-  // =====================================================
-    // =====================================================
-  //      GITHUB — DERNIÈRE ACTION (commit / merge / repo)
+  //      GITHUB — DERNIER COMMIT (temps réel)
   // =====================================================
   getGitHubActivity(): Observable<ActivityItem[]> {
     const reposUrl = `https://api.github.com/users/${this.GITHUB_USER}/repos?sort=pushed&per_page=5`;
-    const profileUrl = `https://github.com/${this.GITHUB_USER}`;
 
     return this.http.get<any[]>(reposUrl).pipe(
       switchMap((repos: any[]) => {
-        if (!repos || !repos.length) {
-          return of([] as any[]);
-        }
+        if (!repos || !repos.length) return of([] as any[]);
 
-        // Prend le repo le plus récemment poussé
         const repo = repos[0];
         const commitsUrl = `https://api.github.com/repos/${repo.full_name}/commits?per_page=1`;
 
@@ -47,8 +34,6 @@ export class ActivityService {
             return [
               {
                 repo: repo.name,
-                repoUrl: repo.html_url,
-                language: repo.language,
                 message: c.commit.message.split('\n')[0],
                 date: c.commit.author.date,
                 sha: c.sha.substring(0, 7),
@@ -62,15 +47,15 @@ export class ActivityService {
 
       map((commits: any[]): ActivityItem[] => {
         if (!commits.length) {
-          // Fallback : lien vers le profil
           return [
             {
               type: 'github' as const,
               title: 'Profil GitHub',
               description: 'Retrouve tous mes projets open-source',
-              url: profileUrl,
+              url: `https://github.com/${this.GITHUB_USER}`,
               date: new Date(),
-              icon: '🐙',
+              logo: 'https://cdn.simpleicons.org/github/FFFFFF',
+              logoBg: '#181717',
               color: '#a78bc8'
             }
           ];
@@ -80,11 +65,12 @@ export class ActivityService {
         return [
           {
             type: 'github' as const,
-            title: `Dernier commit sur ${c.repo}`,
+            title: `Dernier commit · ${c.repo}`,
             description: `${c.sha} · ${c.message}`,
             url: c.url,
             date: new Date(c.date),
-            icon: '🐙',
+            logo: 'https://cdn.simpleicons.org/github/FFFFFF',
+            logoBg: '#181717',
             color: '#a78bc8'
           }
         ];
@@ -97,89 +83,58 @@ export class ActivityService {
             type: 'github' as const,
             title: 'Profil GitHub',
             description: 'Retrouve tous mes projets open-source',
-            url: profileUrl,
+            url: `https://github.com/${this.GITHUB_USER}`,
             date: new Date(),
-            icon: '🐙',
+            logo: 'https://cdn.simpleicons.org/github/FFFFFF',
+            logoBg: '#181717',
             color: '#a78bc8'
           }
         ]);
       })
     );
   }
+
   // =====================================================
-  //                LINKEDIN — MANUEL
+  //      LINKEDIN — DERNIER POST (statique)
   // =====================================================
-  /**
-   * LinkedIn bloque les appels directs.
-   * 👉 Mets à jour tes derniers posts ici manuellement.
-   */
-    // =====================================================
-  //                LINKEDIN — MANUEL
-  // =====================================================
-  /**
-   * LinkedIn bloque les appels directs depuis un navigateur.
-   * 👉 Mets à jour tes derniers posts ici manuellement.
-   */
   getLinkedInActivity(): Observable<ActivityItem[]> {
     const items: ActivityItem[] = [
       {
         type: 'linkedin' as const,
-        title: 'OpenStack · Kubernetes · Cloud Computing',
+        title: 'Summer Internship at Dataouine Center — NexusOS',
         description:
-          'Retour d’expérience sur mon projet de cloud privé et l’orchestration Kubernetes.',
-        url: 'https://www.linkedin.com/posts/jihan-dhaoui-15599b236_openstack-kubernetes-cloudcomputing-ugcPost-7459705913218801664-Izet/',
-        date: new Date('2026-06-01'),        // ← ~4 mois avant maintenant
-        icon: '💼',
+          'Lead Infrastructure Security, Containerization & Telemetry Engineer — CI/CD, Docker Compose, Zero Trust, Prometheus & Grafana.',
+        url: this.LINKEDIN_URL,
+        date: new Date('2026-10-13'), // ← ~2 mois avant maintenant
+        logo: 'https://cdn.simpleicons.org/linkedin/FFFFFF',
+        logoBg: '#0A66C2',
         color: '#8fa0d8'
       }
     ];
     return of(items);
   }
+
   // =====================================================
-  //                MEDIUM — RSS VIA PROXY
-  // =====================================================
-    // =====================================================
-  //                MEDIUM — MANUEL (le RSS bloque)
-  // =====================================================
-  /**
-   * Medium renvoie 403 sur le RSS public.
-   * 👉 Mets à jour tes derniers articles ici manuellement.
-   */
-  getMediumActivity(): Observable<ActivityItem[]> {
-    const items: ActivityItem[] = [
-      {
-        type: 'medium' as const,
-        title: 'Prompt Injection in CI/CD Pipelines — GitHub Actions Issue (PromptPwnd)',
-        description:
-          'Analyse d’une faille de prompt injection dans les pipelines CI/CD GitHub Actions.',
-        url: 'https://medium.com/ai-in-plain-english/prompt-injection-in-ci-cd-pipelines-github-actions-issue-promptpwnd-77346b8cd5cc',
-        date: new Date('2026-09-15'),        // ← à ajuster selon la date réelle
-        icon: '✍️',
-        color: '#e8b8cc'
-      }
-    ];
-    return of(items);
-  }
-  // =====================================================
-  //                AGRÉGATION + TEMPS ÉCOULÉ
+  //      AGRÉGATION + TEMPS ÉCOULÉ
   // =====================================================
   getAllActivity(): Observable<ActivityItem[]> {
     return forkJoin([
       this.getGitHubActivity(),
-      this.getLinkedInActivity(),
-      this.getMediumActivity()
+      this.getLinkedInActivity()
     ]).pipe(
-      map(([gh, li, md]) => {
-        const all = [...gh, ...li, ...md];
+      map(([gh, li]) => {
+        const all: ActivityItem[] = [...gh, ...li];
         all.sort((a, b) => b.date.getTime() - a.date.getTime());
-        all.forEach((item) => (item.timeAgo = this.timeAgo(item.date)));
+        all.forEach((item: ActivityItem) => {
+          item.timeAgo = this.timeAgo(item.date);
+        });
         return all;
       })
     );
   }
 
   // =====================================================
-  //                UTILITAIRE — TEMPS ÉCOULÉ
+  //      UTILITAIRE — TEMPS ÉCOULÉ
   // =====================================================
   timeAgo(date: Date): string {
     const seconds = Math.floor((Date.now() - date.getTime()) / 1000);

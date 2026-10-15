@@ -1,4 +1,4 @@
-export type ActivityType = 'github' | 'linkedin' | 'medium';
+export type ActivityType = 'github' | 'linkedin';
 
 export interface ActivityItem {
   type: ActivityType;
@@ -6,8 +6,8 @@ export interface ActivityItem {
   description?: string;
   url: string;
   date: Date;
-  icon: string;
+  logo: string;         // ← URL du logo officiel
+  logoBg: string;       // ← couleur de fond du badge
   color: string;
-  /** Texte "il y a X" calculé au chargement (optionnel) */
   timeAgo?: string;
 }

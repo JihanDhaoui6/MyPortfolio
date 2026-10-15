@@ -2,8 +2,8 @@
   <div class="container">
     <h2 class="section-title">Activité</h2>
     <p class="section-subtitle">
-      Mes dernières actions sur <strong>GitHub</strong>, <strong>LinkedIn</strong>
-      et <strong>Medium</strong> — en direct.
+      Mes dernières actions sur <strong>GitHub</strong> et <strong>LinkedIn</strong>
+      — en direct.
     </p>
 
     <!-- Loading -->
@@ -28,7 +28,14 @@
         [style.--card-accent]="item.color">
 
         <div class="activity-header">
-          <span class="activity-icon">{{ item.icon }}</span>
+          <!-- 🎨 Logo officiel à la place de l'émoji -->
+          <div class="activity-logo" [style.background]="item.logoBg">
+            <img
+              [src]="item.logo"
+              [alt]="item.type"
+              (error)="onLogoError($event)"
+              loading="lazy">
+          </div>
           <span class="activity-type">{{ item.type }}</span>
         </div>
 
