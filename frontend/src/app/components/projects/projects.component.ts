@@ -10,7 +10,7 @@ interface Project {
   color: string;
   date: string;
   icon: string;
-  images: string[];      // ← galerie d'images
+  images: string[];      // ← peut contenir images ET vidéos
 }
 
 @Component({
@@ -19,7 +19,6 @@ interface Project {
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent {
-  /** Projet actuellement ouvert dans la modal */
   lightboxProject: Project | null = null;
   lightboxIndex = 0;
 
@@ -35,9 +34,11 @@ export class ProjectsComponent {
       date: 'Mai 2026',
       icon: '☁️',
       images: [
-        'assets/projects/cloud-01.png',
-        'assets/projects/cloud-02.png',
-        'assets/projects/cloud-03.png'
+        'images/openstack/infrakbira.png',
+        'images/openstack/topo.png',
+        'images/openstack/lkol.png',
+        'images/openstack/rizo.png',
+        'images/openstack/monotoring.png'
       ]
     },
     {
@@ -51,8 +52,10 @@ export class ProjectsComponent {
       date: 'Mars 2026',
       icon: '🩺',
       images: [
-        'assets/projects/diabetes-01.png',
-        'assets/projects/diabetes-02.png'
+        'images/diacare/role.png',
+        'images/diacare/doc.png',
+        'images/diacare/doctor.png',
+        'images/diacare/nutri.png'
       ]
     },
     {
@@ -66,9 +69,9 @@ export class ProjectsComponent {
       date: 'Nov 2025',
       icon: '🛡️',
       images: [
-        'assets/projects/intrusion-01.png',
-        'assets/projects/intrusion-02.png',
-        'assets/projects/intrusion-03.png'
+        'images/sec/home.png',
+        'images/sec/param.png',
+        'images/intrusion/03.png'
       ]
     },
     {
@@ -82,8 +85,7 @@ export class ProjectsComponent {
       date: 'Fév 2024',
       icon: '📚',
       images: [
-        'assets/projects/books-01.png',
-        'assets/projects/books-02.png'
+        'images/livre/video.webm'
       ]
     },
     {
@@ -97,8 +99,7 @@ export class ProjectsComponent {
       date: 'Jan 2025',
       icon: '✈️',
       images: [
-        'assets/projects/travel-javafx-01.png',
-        'assets/projects/travel-javafx-02.png'
+       
       ]
     },
     {
@@ -112,14 +113,25 @@ export class ProjectsComponent {
       date: 'Jan 2025',
       icon: '🌐',
       images: [
-        'images/openstack/rizo.png',
-        'images/openstack/lkol.png',
-       'images/openstack/infrakbira.png'
+       
       ]
     }
   ];
 
-  // ===== LIGHTBOX =====
+  // =====================================================
+  //            DÉTECTION IMAGE / VIDÉO
+  // =====================================================
+  isVideo(file: string): boolean {
+    return /\.(mp4|webm|ogg|mov|avi|mkv)$/i.test(file);
+  }
+
+  isImage(file: string): boolean {
+    return /\.(png|jpg|jpeg|gif|webp|svg|avif|bmp)$/i.test(file);
+  }
+
+  // =====================================================
+  //                  LIGHTBOX
+  // =====================================================
   openLightbox(project: Project, index = 0): void {
     this.lightboxProject = project;
     this.lightboxIndex = index;
@@ -150,7 +162,6 @@ export class ProjectsComponent {
     this.lightboxIndex = index;
   }
 
-  /** Navigation clavier dans la modal */
   onKeyDown(event: KeyboardEvent): void {
     if (!this.lightboxProject) return;
     if (event.key === 'Escape') this.closeLightbox();

@@ -24,7 +24,7 @@
         <!-- Carte projet -->
         <article class="project-card">
 
-          <!-- Header : date + titre -->
+          <!-- Header : date -->
           <div class="project-header">
             <span class="project-date">{{ p.date }}</span>
           </div>
@@ -37,15 +37,32 @@
             <li *ngFor="let t of p.tech">{{ t }}</li>
           </ul>
 
-          <!-- Galerie d'images -->
+          <!-- ===== GALERIE MÉDIAS (images + vidéos) ===== -->
           <div class="project-gallery" *ngIf="p.images?.length">
             <div
-              *ngFor="let img of p.images; let idx = index"
+              *ngFor="let media of p.images; let idx = index"
               class="gallery-thumb"
               (click)="openLightbox(p, idx)">
-              <img [src]="img" [alt]="p.title + ' - ' + (idx + 1)" loading="lazy">
+
+              <!-- 🎥 Si vidéo -->
+              <video
+                *ngIf="isVideo(media)"
+                [src]="media"
+                muted
+                preload="metadata"
+                playsinline
+                class="gallery-video">
+              </video>
+
+              <!-- 🖼️ Si image -->
+              <img
+                *ngIf="isImage(media)"
+                [src]="media"
+                [alt]="p.title + ' - ' + (idx + 1)"
+                loading="lazy">
+
               <div class="thumb-overlay">
-                <span class="zoom-icon">🔍</span>
+                <span class="zoom-icon">{{ isVideo(media) ? '▶' : '🔍' }}</span>
               </div>
             </div>
           </div>
@@ -81,17 +98,29 @@
     <!-- Bouton fermer -->
     <button class="lightbox-close" (click)="closeLightbox()" aria-label="Fermer">✕</button>
 
-    <!-- Image principale -->
+    <!-- Stage média -->
     <div class="lightbox-stage">
       <button
         *ngIf="lp.images.length > 1"
         class="lightbox-nav prev"
         (click)="prevImage($event)"
-        aria-label="Image précédente">
+        aria-label="Précédent">
         ‹
       </button>
 
+      <!-- 🎥 Si vidéo -->
+      <video
+        *ngIf="isVideo(lp.images[lightboxIndex])"
+        [src]="lp.images[lightboxIndex]"
+        controls
+        autoplay
+        playsinline
+        class="lightbox-video">
+      </video>
+
+      <!-- 🖼️ Si image -->
       <img
+        *ngIf="isImage(lp.images[lightboxIndex])"
         [src]="lp.images[lightboxIndex]"
         [alt]="lp.title"
         class="lightbox-image">
@@ -100,7 +129,7 @@
         *ngIf="lp.images.length > 1"
         class="lightbox-nav next"
         (click)="nextImage($event)"
-        aria-label="Image suivante">
+        aria-label="Suivant">
         ›
       </button>
     </div>
@@ -116,11 +145,25 @@
     <!-- Miniatures cliquables -->
     <div class="lightbox-thumbs" *ngIf="lp.images.length > 1">
       <button
-        *ngFor="let img of lp.images; let idx = index"
+        *ngFor="let media of lp.images; let idx = index"
         class="lightbox-thumb"
         [class.active]="idx === lightboxIndex"
         (click)="goToImage(idx, $event)">
-        <img [src]="img" [alt]="'thumb ' + (idx + 1)">
+
+        <!-- 🎥 Si vidéo -->
+        <video
+          *ngIf="isVideo(media)"
+          [src]="media"
+          muted
+          preload="metadata"
+          class="thumb-video">
+        </video>
+
+        <!-- 🖼️ Si image -->
+        <img
+          *ngIf="isImage(media)"
+          [src]="media"
+          [alt]="'thumb ' + (idx + 1)">
       </button>
     </div>
 

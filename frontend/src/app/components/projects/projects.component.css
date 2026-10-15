@@ -62,13 +62,8 @@
   transition: var(--transition-bounce);
 }
 
-.timeline-item.left .timeline-dot {
-  right: -23px;
-}
-
-.timeline-item.right .timeline-dot {
-  left: -23px;
-}
+.timeline-item.left .timeline-dot { right: -23px; }
+.timeline-item.right .timeline-dot { left: -23px; }
 
 .timeline-item:hover .timeline-dot {
   transform: scale(1.15);
@@ -143,24 +138,23 @@
   gap: 0.4rem;
 }
 
-/* ===== Stack : étiquettes plus foncées ===== */
 .project-tech li {
   font-size: 0.72rem;
   padding: 0.35rem 0.75rem;
   border-radius: 6px;
-  background: var(--accent, var(--clr-lilac));          /* ← fond foncé (couleur du projet) */
+  background: var(--accent, var(--clr-lilac));
   border: 1.5px solid rgba(0, 0, 0, 0.15);
-  color: #ffffff;                                        /* ← texte blanc */
+  color: #ffffff;
   font-family: var(--font-code);
   font-weight: 700;
   letter-spacing: 0.3px;
   transition: var(--transition-bounce);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);           /* ← ombre douce pour lisibilité */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .project-tech li:hover {
-  background: #2a1e3e;                                   /* ← violet très foncé au survol */
+  background: #2a1e3e;
   border-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
   transform: translateY(-2px) scale(1.05);
@@ -168,7 +162,7 @@
 }
 
 /* =================================================== */
-/*              GALERIE MINIATURES                     */
+/*              GALERIE MÉDIAS (images + vidéos)       */
 /* =================================================== */
 .project-gallery {
   display: grid;
@@ -190,7 +184,10 @@
   transition: var(--transition-bounce);
 }
 
-.gallery-thumb img {
+/* 🖼️ Image OU 🎥 Vidéo — même style de base */
+.gallery-thumb img,
+.gallery-thumb video,
+.gallery-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -204,7 +201,8 @@
   box-shadow: 0 8px 20px rgba(167, 139, 200, 0.3);
 }
 
-.gallery-thumb:hover img {
+.gallery-thumb:hover img,
+.gallery-thumb:hover video {
   transform: scale(1.1);
 }
 
@@ -225,6 +223,7 @@
 
 .zoom-icon {
   font-size: 1.3rem;
+  color: #ffffff;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
 }
 
@@ -308,7 +307,7 @@
   transform: rotate(90deg) scale(1.1);
 }
 
-/* Stage image */
+/* Stage média (image ou vidéo) */
 .lightbox-stage {
   position: relative;
   flex: 1;
@@ -327,6 +326,16 @@
   object-fit: contain;
   border-radius: 12px;
   display: block;
+}
+
+/* 🎥 Vidéo dans la lightbox */
+.lightbox-video {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 12px;
+  display: block;
+  background: #000;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 /* Flèches navigation */
@@ -403,12 +412,15 @@
   border: 2px solid transparent;
   cursor: pointer;
   padding: 0;
-  background: transparent;
+  background: rgba(167, 139, 200, 0.15);
   transition: var(--transition);
   opacity: 0.6;
 }
 
-.lightbox-thumb img {
+/* 🖼️ Image OU 🎥 Vidéo dans les miniatures */
+.lightbox-thumb img,
+.lightbox-thumb video,
+.thumb-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -431,7 +443,6 @@
 /* =================================================== */
 
 @media (max-width: 800px) {
-  /* Timeline en ligne simple à gauche */
   .timeline-axis {
     left: 20px;
     transform: none;

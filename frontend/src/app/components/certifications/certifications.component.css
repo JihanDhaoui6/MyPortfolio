@@ -44,24 +44,35 @@
   border-color: var(--accent, var(--clr-lilac));
 }
 
-/* ===== Badge icône ===== */
-.cert-badge {
+/* =================================================== */
+/*                  LOGO OFFICIEL                      */
+/* =================================================== */
+.cert-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 54px;
-  height: 54px;
+  width: 60px;
+  height: 60px;
   border-radius: 14px;
-  background: var(--accent, var(--clr-lilac));
-  box-shadow: 0 6px 18px rgba(167, 139, 200, 0.35);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
   flex-shrink: 0;
+  padding: 10px;
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: var(--transition-bounce);
 }
 
-.cert-icon {
-  font-size: 1.6rem;
-  line-height: 1;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+.cert-card:hover .cert-logo {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+.cert-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
 /* ===== Titre ===== */
@@ -117,6 +128,35 @@
   border: 1px solid rgba(42, 30, 62, 0.15);
 }
 
+/* =================================================== */
+/*             HINT LINKEDIN                           */
+/* =================================================== */
+.cert-linkedin-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed rgba(167, 139, 200, 0.2);
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--clr-lilac-deep);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: var(--transition-bounce);
+}
+
+.cert-card:hover .cert-linkedin-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cert-linkedin-hint svg {
+  fill: #0a66c2;                                /* Bleu LinkedIn officiel */
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 500px) {
   .certs-grid {
@@ -125,5 +165,10 @@
 
   .cert-name {
     font-size: 0.95rem;
+  }
+
+  .cert-logo {
+    width: 52px;
+    height: 52px;
   }
 }

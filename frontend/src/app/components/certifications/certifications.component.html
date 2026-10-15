@@ -9,26 +9,39 @@
     <div class="certs-grid">
       <a
         *ngFor="let c of certifications"
-        [href]="c.url || '#'"
-        [attr.target]="c.url ? '_blank' : null"
-        [attr.rel]="c.url ? 'noopener' : null"
+        [href]="c.url"
+        target="_blank"
+        rel="noopener"
         class="cert-card"
-        [style.--accent]="c.color"
-        [class.clickable]="c.url">
+        [style.--accent]="c.color">
 
-        <!-- Badge icône -->
-        <div class="cert-badge">
-          <span class="cert-icon">{{ c.icon }}</span>
+        <!-- ===== Logo officiel ===== -->
+        <div
+          class="cert-logo"
+          [style.background]="c.logoBg">
+          <img
+            [src]="c.logo"
+            [alt]="c.issuer"
+            (error)="onLogoError($event)"
+            loading="lazy">
         </div>
 
-        <!-- Contenu -->
+        <!-- ===== Contenu ===== -->
         <h3 class="cert-name">{{ c.name }}</h3>
         <p class="cert-issuer">{{ c.issuer }}</p>
 
-        <!-- Footer : date + catégorie -->
+        <!-- ===== Footer : date + catégorie ===== -->
         <div class="cert-footer">
           <span class="cert-date">{{ c.date }}</span>
           <span class="cert-category">{{ c.category }}</span>
+        </div>
+
+        <!-- ===== Hint LinkedIn ===== -->
+        <div class="cert-linkedin-hint">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          <span>Voir sur LinkedIn</span>
         </div>
       </a>
     </div>
