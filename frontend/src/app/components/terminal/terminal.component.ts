@@ -24,6 +24,38 @@ export class TerminalComponent implements AfterViewInit {
   history: string[] = [];
   historyIndex = -1;
 
+  /** 🎲 Messages d'accueil dynamiques — un est choisi au hasard à l'ouverture */
+  private readonly welcomeVariations = [
+    {
+      greeting: 'Bienvenue sur mon portfolio interactif ! ',
+      tip: "Tapez 'help' pour découvrir toutes les commandes disponibles."
+    },
+    {
+      greeting: 'Hey ! Ravi de vous voir ici ',
+      tip: "Explorez mon univers Cloud & DevOps — tapez 'help' pour commencer."
+    },
+    {
+      greeting: 'Bienvenue dans mon terminal interactif ',
+      tip: "Essayez 'neofetch' pour découvrir mon profil, ou 'help' pour la liste complète."
+    },
+    {
+      greeting: 'Hello, moi c’est Jihan ',
+      tip: "Tapez 'help' pour naviguer, ou 'sudo hire-me' si vous êtes recruteur "
+    },
+    {
+      greeting: 'Bienvenue ! Ce terminal est 100% interactif ',
+      tip: "Commandes utiles : 'whoami', 'skills', 'projects' — ou 'help' pour tout voir."
+    }
+  ];
+
+  /** 🎲 Astuces dynamiques */
+  private readonly tips = [
+    'Astuce : flèches ↑/↓ pour l’historique des commandes.',
+    'Astuce : Tab complète automatiquement les commandes.',
+    'Astuce : tapez "clear" pour nettoyer l’écran.',
+    'Astuce : "sudo hire-me" cache un easter egg 👀'
+  ];
+
   /** Toutes les commandes disponibles */
   private readonly commands: Record<string, () => Line[]> = {
 
@@ -39,9 +71,11 @@ export class TerminalComponent implements AfterViewInit {
       { text: '│  projects     → Projets réalisés', type: 'out' },
       { text: '│  certs        → Certifications', type: 'out' },
       { text: '│  experience   → Parcours professionnel', type: 'out' },
-  
+      { text: '│  docker ps    → Conteneurs actifs', type: 'out' },
+      { text: '│  kubectl get pods → Pods K8s', type: 'out' },
+      { text: '│  terraform plan   → Plan d\'infra', type: 'out' },
       { text: '│  htop         → Monitoring système', type: 'out' },
-      
+      { text: '│  curl /api/health → Vérifier l\'API', type: 'out' },
       { text: '│  sudo hire-me → 👀', type: 'out' },
       { text: '│  contact      → Me joindre', type: 'out' },
       { text: '│  clear        → Effacer', type: 'out' },
@@ -58,7 +92,7 @@ export class TerminalComponent implements AfterViewInit {
     ],
 
     // ============================================
-    //   NEOFETCH — signature DevOps
+    //   NEOFETCH
     // ============================================
     neofetch: () => [
       { text: '        ▄▄▄▄▄▄▄        jihan@cloud-resume', type: 'ok' },
@@ -108,17 +142,15 @@ export class TerminalComponent implements AfterViewInit {
     // ============================================
     projects: () => [
       { text: '╭─ Projets phares ─────────────────────────╮', type: 'info' },
-      { text: '│  🐳 Portfolio Cloud-Native', type: 'ok' },
+      { text: '│   Portfolio Cloud-Native', type: 'ok' },
       { text: '│     Angular · Spring Boot · Docker · Nginx', type: 'out' },
       { text: '│     → github.com/JihanDhaoui6', type: 'out' },
       { text: '│', type: 'out' },
-      { text: '│  🛡️  AI Intrusion Detection (DevSecOps)', type: 'ok' },
+      { text: '│    AI Intrusion Detection (DevSecOps)', type: 'ok' },
       { text: '│     Python · ML · RAG · CI/CD sécurisé', type: 'out' },
-      { text: '│     → github.com/JihanDhaoui6/ai-intrusion-detection-devsecops', type: 'out' },
       { text: '│', type: 'out' },
-      { text: '│  ☸️  CKA 2026 Preparation', type: 'ok' },
+      { text: '│    CKA 2026 Preparation', type: 'ok' },
       { text: '│     Kubernetes · Helm · ArgoCD', type: 'out' },
-      { text: '│     → github.com/JihanDhaoui6/CKA_2026', type: 'out' },
       { text: '╰──────────────────────────────────────────╯', type: 'info' }
     ],
 
@@ -126,10 +158,10 @@ export class TerminalComponent implements AfterViewInit {
     //   CERTIFICATIONS
     // ============================================
     certs: () => [
-      { text: '> ☁️  AWS Cloud Practitioner', type: 'ok' },
-      { text: '> ☸️  Certified Kubernetes Administrator (en cours)', type: 'ok' },
-      { text: '> 🐳 Docker Certified Associate', type: 'ok' },
-      { text: '> 🔴 Red Hat Certified System Administrator', type: 'ok' }
+      { text: '>  AWS Cloud Practitioner', type: 'ok' },
+      { text: '>  Certified Kubernetes Administrator (en cours)', type: 'ok' },
+      { text: '>  Docker Certified Associate', type: 'ok' },
+      { text: '>  Red Hat Certified System Administrator', type: 'ok' }
     ],
 
     // ============================================
@@ -140,7 +172,7 @@ export class TerminalComponent implements AfterViewInit {
       { text: '    Zero Trust · Docker · GitHub Actions · Observabilité', type: 'out' },
       { text: '', type: 'out' },
       { text: '> [2025-07] Stagiaire Observatrice — CRC Bouchemma', type: 'ok' },
-      { text: '    Réseaux fibre · Linux · Stockage · Communication inter-sites', type: 'out' }
+      { text: '    Réseaux fibre · Linux · Stockage', type: 'out' }
     ],
 
     // ============================================
@@ -163,8 +195,7 @@ export class TerminalComponent implements AfterViewInit {
       { text: 'portfolio-backend-5f6a7b     1/1     Running   0          3h', type: 'out' },
       { text: 'postgres-statefulset-0       1/1     Running   0          3h', type: 'out' },
       { text: 'prometheus-server-0          1/1     Running   0          3h', type: 'out' },
-      { text: 'grafana-8a9b0c               1/1     Running   0          3h', type: 'out' },
-      { text: 'trivy-operator-2c3d4e        1/1     Running   0          3h', type: 'out' }
+      { text: 'grafana-8a9b0c               1/1     Running   0          3h', type: 'out' }
     ],
 
     // ============================================
@@ -176,7 +207,6 @@ export class TerminalComponent implements AfterViewInit {
       { text: 'Terraform will perform the following actions:', type: 'info' },
       { text: '', type: 'out' },
       { text: '  + aws_instance.portfolio_vps', type: 'ok' },
-      { text: '      ami           = "ami-0xyz..."', type: 'out' },
       { text: '      instance_type = "t3.medium"', type: 'out' },
       { text: '  + aws_security_group.portfolio_sg', type: 'ok' },
       { text: '      ingress  = [22, 80, 443]', type: 'out' },
@@ -186,7 +216,7 @@ export class TerminalComponent implements AfterViewInit {
     ],
 
     // ============================================
-    //   HTOP (simulation)
+    //   HTOP
     // ============================================
     htop: () => [
       { text: '  1  [██████████████░░░░░░]  72%   nginx', type: 'out' },
@@ -195,7 +225,6 @@ export class TerminalComponent implements AfterViewInit {
       { text: '  4  [██░░░░░░░░░░░░░░░░░░]  12%   prometheus', type: 'out' },
       { text: '', type: 'out' },
       { text: '  Mem  : [████████████░░░░░░░░]  58%   4.2G / 8G', type: 'out' },
-      { text: '  Swp  : [██░░░░░░░░░░░░░░░░░░]   8%   0.3G / 4G', type: 'out' },
       { text: '  Tasks: 143 total, 2 running, 141 sleeping', type: 'info' }
     ],
 
@@ -208,50 +237,52 @@ export class TerminalComponent implements AfterViewInit {
       { text: '', type: 'out' },
       { text: '{', type: 'out' },
       { text: '  "status": "UP",', type: 'ok' },
-      { text: '  "components": {', type: 'out' },
-      { text: '    "db": "UP",', type: 'ok' },
-      { text: '    "diskSpace": "UP",', type: 'ok' },
-      { text: '    "ping": "UP"', type: 'ok' },
-      { text: '  }', type: 'out' },
+      { text: '  "db": "UP",', type: 'ok' },
+      { text: '  "diskSpace": "UP"', type: 'ok' },
       { text: '}', type: 'out' }
     ],
 
     // ============================================
-    //   SUDO HIRE-ME (easter egg)
+    //   SUDO HIRE-ME
     // ============================================
     'sudo hire-me': () => [
-      { text: '🤖 Vérification des permissions...', type: 'out' },
-      { text: '✅ Accès root accordé', type: 'ok' },
+      { text: ' Vérification des permissions...', type: 'out' },
+      { text: ' Accès root accordé', type: 'ok' },
       { text: '', type: 'out' },
-      { text: '🎉 Excellente décision !', type: 'ok' },
+      { text: ' Excellente décision !', type: 'ok' },
       { text: 'Jihan est prête à rejoindre votre équipe Cloud/DevOps.', type: 'ok' },
       { text: '', type: 'out' },
-      { text: '→ Envoyez-moi un message : contact@ton-domaine.dev', type: 'info' }
+      { text: '→ Envoyez-moi un message : jihandhaoui65@gmail.com', type: 'info' }
     ],
 
     // ============================================
     //   CONTACT
     // ============================================
     contact: () => [
-      { text: '> 📧 Email     : contact@ton-domaine.dev', type: 'ok' },
-      { text: '> 💼 LinkedIn  : linkedin.com/in/jihan-dhaoui-15599b236', type: 'out' },
-      { text: '> 🐙 GitHub    : github.com/JihanDhaoui6', type: 'out' }
+      { text: '>  Email     : jihandhaoui65@gmail.com', type: 'ok' },
+      { text: '>  LinkedIn  : linkedin.com/in/jihan-dhaoui-15599b236', type: 'out' },
+      { text: '>  GitHub    : github.com/JihanDhaoui6', type: 'out' }
     ]
   };
 
   ngAfterViewInit(): void {
     this.printBoot();
     setTimeout(() => this.termInput?.nativeElement.focus(), 200);
-
-    // 👇 Auto-exécute neofetch après 2 secondes pour effet "wow"
-    setTimeout(() => this.execute('neofetch'), 2000);
+    // ⚠️ Plus d'auto-exécution de neofetch
   }
 
+  /** 🎲 Génère un message d'accueil dynamique */
   private printBoot(): void {
+    const welcome =
+      this.welcomeVariations[
+        Math.floor(Math.random() * this.welcomeVariations.length)
+      ];
+    const tip = this.tips[Math.floor(Math.random() * this.tips.length)];
+
     this.lines = [
-      { text: 'Bienvenue sur mon portfolio interactif ! 👋', type: 'ok' },
-      { text: "Tapez 'help' pour lister les commandes disponibles.", type: 'out' },
-      { text: 'Astuce : flèches ↑/↓ pour l\'historique.', type: 'info' },
+      { text: welcome.greeting, type: 'ok' },
+      { text: welcome.tip, type: 'out' },
+      { text: tip, type: 'info' },
       { text: '', type: 'out' }
     ];
   }
@@ -264,19 +295,24 @@ export class TerminalComponent implements AfterViewInit {
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
       if (this.history.length) {
-        this.historyIndex = Math.min(this.historyIndex + 1, this.history.length - 1);
+        this.historyIndex = Math.min(
+          this.historyIndex + 1,
+          this.history.length - 1
+        );
         this.currentInput = this.history[this.historyIndex];
       }
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       this.historyIndex = Math.max(this.historyIndex - 1, -1);
-      this.currentInput = this.historyIndex === -1 ? '' : this.history[this.historyIndex];
+      this.currentInput =
+        this.historyIndex === -1 ? '' : this.history[this.historyIndex];
     } else if (event.key === 'Tab') {
-      // 🔧 Auto-complétion avec Tab
       event.preventDefault();
       const partial = this.currentInput.toLowerCase();
       if (!partial) return;
-      const match = Object.keys(this.commands).find((c) => c.startsWith(partial));
+      const match = Object.keys(this.commands).find((c) =>
+        c.startsWith(partial)
+      );
       if (match) this.currentInput = match;
     }
   }
@@ -311,7 +347,8 @@ export class TerminalComponent implements AfterViewInit {
   private scrollToBottom(): void {
     setTimeout(() => {
       if (this.termBody) {
-        this.termBody.nativeElement.scrollTop = this.termBody.nativeElement.scrollHeight;
+        this.termBody.nativeElement.scrollTop =
+          this.termBody.nativeElement.scrollHeight;
       }
     }, 0);
   }

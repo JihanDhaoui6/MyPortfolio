@@ -112,8 +112,9 @@ export class ProjectsComponent {
       date: 'Jan 2025',
       icon: '🌐',
       images: [
-        'assets/projects/travel-symfony-01.png',
-        'assets/projects/travel-symfony-02.png'
+        'images/openstack/rizo.png',
+        'images/openstack/lkol.png',
+       'images/openstack/infrakbira.png'
       ]
     }
   ];

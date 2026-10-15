@@ -1,34 +1,98 @@
 <section id="contact">
   <div class="container">
+
     <h2 class="section-title">Contact</h2>
     <p class="section-subtitle">
-      Une question, une opportunité, une idée ? Écris-moi.
+      Une question, une opportunité de <strong>PFE</strong>, une idée ?
+      N’hésitez pas à me contacter.
     </p>
 
-    <form class="contact-form card" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="form-row">
-        <div class="form-field">
-          <label for="name">Nom</label>
-          <input id="name" type="text" formControlName="name" placeholder="Ton nom">
+    <div class="contact-grid">
+
+      <!-- ===== COLONNE GAUCHE : INFOS ===== -->
+      <aside class="contact-info">
+
+        <!-- Statut PFE -->
+        <div class="contact-status">
+          <span class="status-dot"></span>
+          <span class="status-text">
+            Disponible pour <strong>PFE + pré-embauche</strong>
+          </span>
         </div>
-        <div class="form-field">
-          <label for="email">Email</label>
-          <input id="email" type="email" formControlName="email" placeholder="ton@email.com">
+
+        <!-- Cartes de contact -->
+        <div class="contact-cards">
+          <a
+            *ngFor="let c of contacts"
+            [href]="c.url"
+            target="_blank"
+            rel="noopener"
+            class="contact-card"
+            [style.--accent]="c.color">
+            <span class="contact-icon">{{ c.icon }}</span>
+            <div class="contact-details">
+              <span class="contact-label">{{ c.label }}</span>
+              <span class="contact-value">{{ c.value }}</span>
+            </div>
+            <span class="contact-arrow">→</span>
+          </a>
         </div>
-      </div>
 
-      <div class="form-field">
-        <label for="message">Message</label>
-        <textarea id="message" rows="5" formControlName="message" placeholder="Ton message…"></textarea>
-      </div>
+        <!-- Note de réponse -->
+        <div class="contact-note">
+          <span class="note-icon">⚡</span>
+          <p>
+            Je réponds généralement en <strong>moins de 24h</strong>.
+          </p>
+        </div>
 
-      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
-        Envoyer
-      </button>
+      </aside>
 
-      <p *ngIf="submitted" class="form-success">
-        ✓ Message envoyé. Merci !
-      </p>
-    </form>
+      <!-- ===== COLONNE DROITE : FORMULAIRE ===== -->
+      <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Nom</label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="Votre nom" />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="votre@email.com" />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            rows="6"
+            formControlName="message"
+            placeholder="Votre message…"></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="contact-submit"
+          [disabled]="form.invalid">
+          Envoyer le message
+          <span class="submit-arrow">→</span>
+        </button>
+
+        <p *ngIf="submitted" class="form-success">
+          ✓ Message envoyé. Merci !
+        </p>
+
+      </form>
+
+    </div>
   </div>
 </section>

@@ -10,6 +10,36 @@ export class ContactComponent {
   form: FormGroup;
   submitted = false;
 
+  /** Infos de contact */
+
+
+
+    readonly contacts = [
+    {
+      icon: '📧',
+      label: 'Email',
+      value: 'jihandhaoui65@gmail.com',
+      url: 'mailto:jihandhaoui65@gmail.com',
+      color: '#a78bc8'
+    },
+    {
+      icon: '💼',
+      label: 'LinkedIn',
+      value: 'jihan-dhaoui',
+      url: 'https://www.linkedin.com/in/jihan-dhaoui-15599b236/',
+      color: '#8fa0d8'
+    },
+    {
+      icon: '🐙',
+      label: 'GitHub',
+      value: 'JihanDhaoui6',
+      url: 'https://github.com/JihanDhaoui6',
+      color: '#c9b6e0'
+    }
+  ];
+
+
+
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
@@ -20,7 +50,6 @@ export class ContactComponent {
 
   onSubmit(): void {
     if (this.form.invalid) return;
-    // TODO : brancher sur POST /api/contact (Spring Boot)
     console.log(this.form.value);
     this.submitted = true;
     this.form.reset();
