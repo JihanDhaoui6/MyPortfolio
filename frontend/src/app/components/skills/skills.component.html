@@ -43,19 +43,31 @@
 
         <!-- Grille de compétences -->
         <div class="skills-grid">
-          <div *ngFor="let skill of cat.items" class="skill-chip">
-            <span class="skill-icon">{{ skill.icon }}</span>
-            <span class="skill-name">{{ skill.name }}</span>
+         <!-- Grille de compétences -->
+<div class="skills-grid">
+  <div *ngFor="let skill of cat.items" class="skill-chip">
 
-            <!-- Niveau en dots -->
-            <span class="skill-level" [title]="levelLabel(skill.level)">
-              <span
-                *ngFor="let d of levelDots(skill.level)"
-                class="dot"
-                [class.filled]="d < skill.level">
-              </span>
-            </span>
-          </div>
+    <!-- 🎨 Logo réel (même taille pour tous) -->
+    <div class="skill-logo">
+      <img
+        [src]="skill.logo"
+        [alt]="skill.name"
+        (error)="onLogoError($event)"
+        loading="lazy">
+    </div>
+
+    <span class="skill-name">{{ skill.name }}</span>
+
+    <!-- Niveau en dots -->
+    <span class="skill-level" [title]="levelLabel(skill.level)">
+      <span
+        *ngFor="let d of levelDots(skill.level)"
+        class="dot"
+        [class.filled]="d < skill.level">
+      </span>
+    </span>
+  </div>
+</div>
         </div>
       </div>
     </div>

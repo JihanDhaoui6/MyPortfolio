@@ -124,6 +124,10 @@
 /* =================================================== */
 /*           GRILLE DE COMPÉTENCES (chips)             */
 /* =================================================== */
+
+/* =================================================== */
+/*           GRILLE DE COMPÉTENCES (chips)             */
+/* =================================================== */
 .skills-grid {
   display: flex;
   flex-direction: column;
@@ -132,10 +136,10 @@
 
 .skill-chip {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 44px 1fr auto;   /* ← Logo fixe 44px */
   align-items: center;
-  gap: 0.7rem;
-  padding: 0.55rem 0.85rem;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.55);
   border: 1.5px solid rgba(167, 139, 200, 0.18);
@@ -150,6 +154,84 @@
   box-shadow: 0 6px 16px rgba(167, 139, 200, 0.18);
 }
 
+/* ===== Logo dans un cadre fixe (même taille pour tous) ===== */
+.skill-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(167, 139, 200, 0.2);
+  padding: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(167, 139, 200, 0.1);
+  transition: var(--transition-bounce);
+}
+
+.skill-chip:hover .skill-logo {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(167, 139, 200, 0.25);
+  border-color: var(--accent, var(--clr-lilac));
+}
+
+.skill-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+/* ===== Nom ===== */
+.skill-name {
+  font-size: 0.84rem;
+  color: var(--clr-text);
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== Niveau en dots ===== */
+.skill-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(167, 139, 200, 0.2);
+  transition: var(--transition);
+}
+
+.dot.filled {
+  background: var(--accent, var(--clr-lilac));
+  box-shadow: 0 0 6px var(--accent, var(--clr-lilac));
+}
+
+.skill-chip:hover .dot.filled {
+  transform: scale(1.15);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 500px) {
+  .skill-chip {
+    grid-template-columns: 40px 1fr auto;
+    gap: 0.5rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .skill-logo { width: 40px; height: 40px; padding: 5px; }
+  .skill-name { font-size: 0.78rem; }
+}
 .skill-icon {
   font-size: 1.1rem;
   flex-shrink: 0;
