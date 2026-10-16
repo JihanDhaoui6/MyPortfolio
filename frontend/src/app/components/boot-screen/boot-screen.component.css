@@ -1,0 +1,225 @@
+/* =================================================== */
+/*       BOOT SCREEN — LILAC DREAM                     */
+/* =================================================== */
+
+.boot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #0d0a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.boot-overlay.fade-out {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+/* ===== Container ===== */
+.boot-container {
+  width: 100%;
+  max-width: 720px;
+  background: rgba(20, 12, 35, 0.95);
+  border: 1.5px solid rgba(167, 139, 200, 0.4);
+  border-radius: 14px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(167, 139, 200, 0.2);
+  overflow: hidden;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ===== Header ===== */
+.boot-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(42, 30, 62, 0.7);
+  border-bottom: 1px solid rgba(167, 139, 200, 0.2);
+}
+
+.boot-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.boot-dot.red    { background: #e8b8cc; }
+.boot-dot.yellow { background: #f5d0c5; }
+.boot-dot.green  { background: #c8e0d5; }
+
+.boot-title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #c9b6e0;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Corps ===== */
+.boot-body {
+  padding: 1.5rem 1.75rem;
+  color: #e8dff5;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* ===== Banner ASCII ===== */
+.boot-banner {
+  color: #c9b6e0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 1.2rem 0;
+  text-align: left;
+  white-space: pre;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 20px rgba(201, 182, 224, 0.4);
+}
+
+/* ===== Lignes ===== */
+.boot-lines {
+  min-height: 260px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 1.2rem;
+  padding-right: 0.5rem;
+}
+
+.boot-lines::-webkit-scrollbar { width: 6px; }
+.boot-lines::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 200, 0.4);
+  border-radius: 3px;
+}
+
+.boot-line {
+  animation: lineIn 0.25s ease-out;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@keyframes lineIn {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.line-info    { color: #b8a8c9; }
+.line-success { color: #7ab648; font-weight: 700; }
+.line-warning { color: #f5d0c5; }
+.line-cmd     { color: #e8f44d; font-weight: 700; }
+.line-dim     { color: #6a5c80; font-style: italic; }
+
+/* Curseur clignotant */
+.boot-cursor {
+  color: #e8f44d;
+  animation: blink 1s steps(2, start) infinite;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+/* =================================================== */
+/*           BARRE DE PROGRESSION                      */
+/* =================================================== */
+.boot-progress-wrapper {
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(167, 139, 200, 0.25);
+}
+
+.boot-progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
+}
+
+.boot-phase {
+  color: #b8a8c9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 75%;
+}
+
+.boot-percentage {
+  color: #e8f44d;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 45px;
+  text-align: right;
+}
+
+/* Barre */
+.boot-progress-bar {
+  position: relative;
+  height: 10px;
+  background: rgba(42, 30, 62, 0.8);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(167, 139, 200, 0.25);
+}
+
+.boot-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a78bc8 0%, #c9b6e0 50%, #e8f44d 100%);
+  border-radius: 999px;
+  transition: width 0.15s ease;
+  box-shadow: 0 0 12px rgba(232, 244, 77, 0.4);
+  position: relative;
+}
+
+/* Effet de brillance */
+.boot-progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%);
+  animation: shine 1.5s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Meta info */
+.boot-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  color: #8a7a9e;
+}
+
+/* =================================================== */
+/*                    RESPONSIVE                       */
+/* =================================================== */
+@media (max-width: 600px) {
+  .boot-overlay { padding: 1rem; }
+
+  .boot-body {
+    padding: 1.2rem 1.2rem;
+    font-size: 0.78rem;
+  }
+
+  .boot-banner { font-size: 0.7rem; }
+
+  .boot-lines {
+    min-height: 200px;
+    max-height: 220px;
+  }
+
+  .boot-title { font-size: 0.68rem; }
+}

@@ -65,17 +65,14 @@ export class TerminalComponent implements AfterViewInit {
     help: () => [
       { text: '┌─ Commandes disponibles ─────────────────────', type: 'info' },
       { text: '│  whoami       → Présentation rapide', type: 'out' },
-      { text: '│  neofetch     → Profil système complet', type: 'out' },
+      
       { text: '│  skills       → Compétences techniques', type: 'out' },
       { text: '│  stack        → Stack full-stack', type: 'out' },
       { text: '│  projects     → Projets réalisés', type: 'out' },
       { text: '│  certs        → Certifications', type: 'out' },
       { text: '│  experience   → Parcours professionnel', type: 'out' },
-      { text: '│  docker ps    → Conteneurs actifs', type: 'out' },
-      { text: '│  kubectl get pods → Pods K8s', type: 'out' },
-      { text: '│  terraform plan   → Plan d\'infra', type: 'out' },
-      { text: '│  htop         → Monitoring système', type: 'out' },
-      { text: '│  curl /api/health → Vérifier l\'API', type: 'out' },
+     
+    
       { text: '│  sudo hire-me → 👀', type: 'out' },
       { text: '│  contact      → Me joindre', type: 'out' },
       { text: '│  clear        → Effacer', type: 'out' },

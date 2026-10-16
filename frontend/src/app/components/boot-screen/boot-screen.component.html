@@ -1,0 +1,63 @@
+<div class="boot-overlay" [class.fade-out]="isFinished">
+
+  <div class="boot-container">
+
+    <!-- Header -->
+    <div class="boot-header">
+      <span class="boot-dot red"></span>
+      <span class="boot-dot yellow"></span>
+      <span class="boot-dot green"></span>
+      <span class="boot-title">jihan&#64;cloud-resume — boot</span>
+    </div>
+
+    <!-- Lignes de boot -->
+    <div class="boot-body">
+
+      <!-- ASCII banner -->
+      <pre class="boot-banner">
+     ██╗██╗██╗  ██╗ █████╗ ███╗   ██╗
+     ██║██║██║  ██║██╔══██╗████╗  ██║
+     ██║██║███████║███████║██╔██╗ ██║
+██   ██║██║██╔══██║██╔══██║██║╚██╗██║
+╚█████╔╝██║██║  ██║██║  ██║██║ ╚████║
+ ╚════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
+      </pre>
+
+      <!-- Lignes dynamiques -->
+      <div class="boot-lines">
+        <div
+          *ngFor="let line of visibleLines"
+          class="boot-line"
+          [ngClass]="'line-' + line.type">
+          {{ line.text }}
+        </div>
+
+        <!-- Curseur clignotant en cours -->
+        <div *ngIf="progress < 100" class="boot-cursor">█</div>
+      </div>
+
+      <!-- Barre de progression -->
+      <div class="boot-progress-wrapper">
+        <div class="boot-progress-info">
+          <span class="boot-phase">{{ currentPhase }}</span>
+          <span class="boot-percentage">{{ progress | number: '1.0-0' }}%</span>
+        </div>
+
+        <div class="boot-progress-bar">
+          <div
+            class="boot-progress-fill"
+            [style.width.%]="progress">
+          </div>
+        </div>
+
+        <div class="boot-progress-meta">
+          <span>Loading portfolio…</span>
+          <span *ngIf="progress < 100">●●●</span>
+          <span *ngIf="progress >= 100">✔ Done</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

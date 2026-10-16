@@ -20,6 +20,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TerminalComponent } from './components/terminal/terminal.component';
 import { BgCloudComponent } from './components/bg-cloud/bg-cloud.component';
 import { CareerLineComponent } from './components/career-line/career-line.component';
+import { BootScreenComponent } from './components/boot-screen/boot-screen.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CareerLineComponent } from './components/career-line/career-line.compon
     FooterComponent,
     TerminalComponent,
     BgCloudComponent,
-    CareerLineComponent
+    CareerLineComponent,
+    BootScreenComponent
   ],
   imports: [
     BrowserModule,
