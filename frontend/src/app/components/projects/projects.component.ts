@@ -46,7 +46,7 @@ export class ProjectsComponent {
       title: 'Plateforme intelligente de gestion du diabète',
       description:
         'Plateforme de suivi du diabète avec suivi médical, conseils nutritionnels et recommandations basées sur l’IA.',
-      tech: ['Spring Boot', 'Angular', 'PostgreSQL', 'IA'],
+      tech: ['Spring Boot', 'Angular', 'mySQL', 'IA'],
       github: 'https://github.com/JihanDhaoui6',
       color: '#c9b6e0',
       date: 'Mars 2026',
